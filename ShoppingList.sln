@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList", "ShoppingList\ShoppingList.csproj", "{329EBCBE-7C3D-4A89-897F-85291C9F6868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListTests", "SoppingListTests\ShoppingListTests.csproj", "{D6E86E14-6876-419A-811B-B8F0874CD627}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{329EBCBE-7C3D-4A89-897F-85291C9F6868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329EBCBE-7C3D-4A89-897F-85291C9F6868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329EBCBE-7C3D-4A89-897F-85291C9F6868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329EBCBE-7C3D-4A89-897F-85291C9F6868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6E86E14-6876-419A-811B-B8F0874CD627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6E86E14-6876-419A-811B-B8F0874CD627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6E86E14-6876-419A-811B-B8F0874CD627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6E86E14-6876-419A-811B-B8F0874CD627}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C1CA352-A47E-488F-84FE-39D084515052}
+	EndGlobalSection
+EndGlobal

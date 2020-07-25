@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{329EBCBE-7C3D-4A89-897F-85291C9F6868}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ShoppingList</RootNamespace>
+    <AssemblyName>ShoppingList</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ShoppingList.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=5.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.5.2.0\lib\net461\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataModel\Cart.cs" />
+    <Compile Include="DataModel\Category.cs" />
+    <Compile Include="DataModel\Product.cs" />
+    <Compile Include="DataModel\Request\BasicRequest.cs" />
+    <Compile Include="DataModel\Request\Cart\AddProductToCartRequest.cs" />
+    <Compile Include="DataModel\Request\Cart\CartBasicRequest.cs" />
+    <Compile Include="DataModel\Request\Cart\CartClearRequest.cs" />
+    <Compile Include="DataModel\Request\Cart\CartCreateRequest.cs" />
+    <Compile Include="DataModel\Request\Cart\CartFindRequest.cs" />
+    <Compile Include="DataModel\Request\Cart\RemoveProductFromCartRequest.cs" />
+    <Compile Include="DataModel\Request\Product\ProductBasicRequest.cs" />
+    <Compile Include="DataModel\Request\Product\ProductCreateRequest.cs" />
+    <Compile Include="DataModel\Request\Product\ProductDeleteRequest.cs" />
+    <Compile Include="DataModel\Request\Product\ProductFindRequest.cs" />
+    <Compile Include="DataModel\Request\Product\ProductUpdateRequest.cs" />
+    <Compile Include="DataModel\Request\User\UserBasicRequest.cs" />
+    <Compile Include="DataModel\Request\User\UserCreateRequest.cs" />
+    <Compile Include="DataModel\Request\User\UserFindRequest.cs" />
+    <Compile Include="DataModel\Request\User\UserDeleteRequest.cs" />
+    <Compile Include="DataModel\Request\User\UserUpdateRequest.cs" />
+    <Compile Include="DataModel\Response\Cart\AddProductToCartResponse.cs" />
+    <Compile Include="DataModel\Response\Cart\CartBasicResponse.cs" />
+    <Compile Include="DataModel\Response\Cart\CartClearResponse.cs" />
+    <Compile Include="DataModel\Response\Cart\CartCreateResponse.cs" />
+    <Compile Include="DataModel\Response\Cart\CartFindResponse.cs" />
+    <Compile Include="DataModel\Response\Cart\RemoveProductFromCartResponse.cs" />
+    <Compile Include="DataModel\Response\Product\ProductBasicResponse.cs" />
+    <Compile Include="DataModel\Response\Product\ProductCreateResponse.cs" />
+    <Compile Include="DataModel\Response\Product\ProductDeleteResponse.cs" />
+    <Compile Include="DataModel\Response\Product\ProductFindResponse.cs" />
+    <Compile Include="DataModel\Response\Product\ProductUpdateResponse.cs" />
+    <Compile Include="DataModel\Response\User\UserBasicResponse.cs" />
+    <Compile Include="DataModel\Response\User\UserCreateResponse.cs" />
+    <Compile Include="DataModel\Response\User\UserDeleteResponse.cs" />
+    <Compile Include="DataModel\Response\User\UserFindResponse.cs" />
+    <Compile Include="DataModel\Response\User\UserUpdateResponse.cs" />
+    <Compile Include="DataModel\ShoppingListContext.cs" />
+    <Compile Include="DataModel\User.cs" />
+    <Compile Include="Migrations\202007141244353_LastMigration.cs" />
+    <Compile Include="Migrations\202007141244353_LastMigration.Designer.cs">
+      <DependentUpon>202007141244353_LastMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Cart\CartRepository.cs" />
+    <Compile Include="Repository\Cart\ICart.cs" />
+    <Compile Include="Repository\Product\IProduct.cs" />
+    <Compile Include="Repository\Product\ProductRepository.cs" />
+    <Compile Include="Service\Cart\CartService.cs" />
+    <Compile Include="Service\Product\ProductService.cs" />
+    <Compile Include="Utils\Configuration.cs" />
+    <Compile Include="Validation\Errors\CartValidationErrors.cs" />
+    <Compile Include="Validation\Errors\DatabaseErrors.cs" />
+    <Compile Include="Validation\Errors\ProductValidationErrors.cs" />
+    <Compile Include="Validation\Product\CreateRequestValidation.cs" />
+    <Compile Include="Validation\Product\DeleteRequestValidation.cs" />
+    <Compile Include="Validation\Product\FindRequestValidation.cs" />
+    <Compile Include="Validation\Product\ProductValidation.cs" />
+    <Compile Include="Validation\Product\UpdateRequestValidation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repository\User\" />
+    <Folder Include="Service\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007141244353_LastMigration.resx">
+      <DependentUpon>202007141244353_LastMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
+</Project>
