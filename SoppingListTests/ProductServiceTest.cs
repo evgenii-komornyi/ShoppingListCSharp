@@ -1,7 +1,8 @@
 ﻿using Moq;
+using ShoppingList;
 using ShoppingList.DataModel;
 using ShoppingList.DataModel.Request.Product;
-using ShoppingList.Repository.Product;
+using ShoppingList.Repository;
 using ShoppingList.Service.Product;
 using ShoppingList.Validation.Product;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace ShoppingListTests
             
             _victim = new ProductService(mockDB.Object, _validation);
 
-            var actual = _victim.AddProduct(request());
+            var actual = _victim.CreateProduct(request());
             var expected = getProduct();
 
             Assert.Equal(expected, actual.Product);
@@ -116,7 +117,7 @@ namespace ShoppingListTests
         }
 
         [Fact]
-        public void ShouldGetProductById()
+        public void ShouldFindProductById()
         {
             _createRequestValidation = new CreateRequestValidation();
             _deleteRequestValidation = new DeleteRequestValidation();
@@ -126,14 +127,14 @@ namespace ShoppingListTests
             _validation = new ProductValidation(_createRequestValidation, _findRequestValidation, _updateRequestValidation, _deleteRequestValidation);
 
             ProductFindRequest request = new ProductFindRequest();
-            request.Id = 1;
+            request.ProductId = 1;
 
             var mock = new Mock<IProduct>();
 
             mock.Setup(x => x.ReadSingle(request))
                 .Returns(new Product
                 {
-                    ProductId = 1,
+                    Id = 1,
                     Name = "Milk",
                     Category = Category.Milk,
                     Price = 50,
@@ -169,15 +170,7 @@ namespace ShoppingListTests
             var mock = new Mock<IProduct>();
 
             mock.Setup(x => x.Update(request))
-                .Returns(new Product
-                {
-                    ProductId = 2,
-                    Name = "Pork",
-                    Category = Category.Meat,
-                    Price = 150,
-                    Discount = 50,
-                    Description = "Pork from Nigeria."
-                });
+                .Returns(1);
 
             _victim = new ProductService(mock.Object, _validation);
             Product actual = _victim.UpdateById(request).UpdatedProduct;
@@ -219,7 +212,7 @@ namespace ShoppingListTests
             var products = new List<Product>()
             {
                 new Product {
-                    ProductId = 1,
+                    Id = 1,
                     Name = "Milk",
                     Category = Category.Milk,
                     Price = 50,
@@ -227,7 +220,7 @@ namespace ShoppingListTests
                     Description = "Milk from latvia"
                 },
                 new Product {
-                    ProductId = 2,
+                    Id = 2,
                     Name = "Beef",
                     Category = Category.Meat,
                     Price = 100,
@@ -235,7 +228,7 @@ namespace ShoppingListTests
                     Description = "Beef from latvia"
                 },
                 new Product {
-                    ProductId = 3,
+                    Id = 3,
                     Name = "Tess",
                     Category = Category.Tea,
                     Price = 25,

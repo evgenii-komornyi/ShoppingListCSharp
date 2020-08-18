@@ -11,30 +11,28 @@ namespace ShoppingList.DataModel
 {
     public class AddProductToCartResponse : CartBasicResponse
     {
-        public Cart Cart { get; set; }
+        public bool HasAdded { get; set; }
 
         public override bool Equals(object obj)
         {
             return obj is AddProductToCartResponse response &&
                    EqualityComparer<List<CartValidationErrors>>.Default.Equals(ValidationErrors, response.ValidationErrors) &&
                    EqualityComparer<List<DatabaseErrors>>.Default.Equals(DBErrors, response.DBErrors) &&
-                   EqualityComparer<Cart>.Default.Equals(Cart, response.Cart);
+                   HasAdded == response.HasAdded;
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -1388259932;
+            int hashCode = -1491536292;
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CartValidationErrors>>.Default.GetHashCode(ValidationErrors);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<DatabaseErrors>>.Default.GetHashCode(DBErrors);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Cart>.Default.GetHashCode(Cart);
+            hashCode = hashCode * -1521134295 + HasAdded.GetHashCode();
             return hashCode;
         }
 
         public override string ToString()
         {
-            return $"{{{nameof(Cart)}={Cart}, {nameof(ValidationErrors)}={ValidationErrors}, {nameof(DBErrors)}={DBErrors}}}";
+            return $"{{{nameof(HasAdded)}={HasAdded.ToString()}, {nameof(ValidationErrors)}={ValidationErrors}, {nameof(DBErrors)}={DBErrors}}}";
         }
-
-
     }
 }

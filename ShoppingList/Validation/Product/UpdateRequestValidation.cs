@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ShoppingList.Validation.Product
 {
-    public class UpdateRequestValidation
+    public class UpdateRequestValidation : Validatable<ProductUpdateRequest, ProductValidationErrors>
     {
-        public List<ProductValidationErrors> ValidateUpdateRequest(ProductUpdateRequest updateFieldRequest)
+        public List<ProductValidationErrors> Validate(ProductUpdateRequest updateFieldRequest)
         {
             List<ProductValidationErrors> allErrors = new List<ProductValidationErrors>();
 

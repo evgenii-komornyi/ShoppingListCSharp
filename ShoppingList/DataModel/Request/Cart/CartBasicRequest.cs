@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingList.DataModel.Request.Cart
 {
-    public abstract class CartBasicRequest
+    public abstract class CartBasicRequest : BasicRequest
     {
         public long UserId { get; set; }
     }

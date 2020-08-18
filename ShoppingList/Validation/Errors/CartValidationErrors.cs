@@ -8,10 +8,8 @@ namespace ShoppingList.Validation.Errors
 {
     public enum CartValidationErrors
     {
-        EMPTY_ID,
-        CART_NOT_EMPTY,
-        DUPLICATE_ENTRY,
-        CART_NOT_EXIST,
-        PRODUCT_NOT_EXIST
+        EMPTY_PRODUCT_ID,
+        EMPTY_CART_ID,
+        CART_NOT_EMPTY
     }
 }

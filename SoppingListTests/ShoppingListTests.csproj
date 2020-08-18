@@ -10,8 +10,8 @@
     <ProjectGuid>{D6E86E14-6876-419A-811B-B8F0874CD627}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoppingListTests</RootNamespace>
-    <AssemblyName>SoppingListTests</AssemblyName>
+    <RootNamespace>ShoppingListTests</RootNamespace>
+    <AssemblyName>ShoppingListTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -101,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartValidationTest.cs" />
     <Compile Include="ProductServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProductValidationTest.cs" />

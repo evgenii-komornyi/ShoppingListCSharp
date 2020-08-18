@@ -1,34 +1,38 @@
 ﻿using ShoppingList.DataModel;
 using ShoppingList.DataModel.Request.Cart;
-using ShoppingList.Repository.Cart;
+using ShoppingList.DataModel.Request.Product;
+using ShoppingList.DataModel.Response.Cart;
+using ShoppingList.Exceptions;
+using ShoppingList.Repository;
+using ShoppingList.Service;
 using ShoppingList.Service.Product;
 using ShoppingList.Validation;
+using ShoppingList.Validation.Cart;
 using ShoppingList.Validation.Errors;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ShoppingList.Service
+namespace ShoppingList
 {
-    public class CartService
+    public class CartService : ICartService
     {
-        private ICart _cartRepository;
-        private ProductService _productService;
+        readonly ICart _cartRepository;
+        readonly IProductService _productService;
+        readonly CartValidation _cartValidation;
 
-        public CartService(ICart cartRepository, ProductService productService)
+        public CartService(ICart cartRepository, IProductService productService, CartValidation cartValidation)
         {
             _cartRepository = cartRepository;
             _productService = productService;
+            _cartValidation = cartValidation;
         }
-        
+
         public CartCreateResponse CreateCart(CartCreateRequest request)
         {
-            CartCreateResponse response = new CartCreateResponse();
-            List<CartValidationErrors> validationErrors = new List<CartValidationErrors>();
-            List<DatabaseErrors> dbErrors = new List<DatabaseErrors>();
+            var response = new CartCreateResponse();
+            var validationErrors = _cartValidation.CartCreateRequestValidation.Validate(request);
+            var dbErrors = new List<DatabaseErrors>();
 
             if (validationErrors.Count != 0)
             {
@@ -38,13 +42,15 @@ namespace ShoppingList.Service
             {
                 try
                 {
-                    Cart cart = new Cart();
-                    cart.CartId = request.CartId;
-                    cart.UserId = request.UserId;
+                    Cart cart = new Cart
+                    {
+                        Id = request.CartId,
+                        UserId = request.UserId
+                    };
 
                     response.Cart = _cartRepository.Create(cart);
                 }
-                catch (SqlException ex)
+                catch (SqlException)
                 {
                     dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
                 }
@@ -55,9 +61,9 @@ namespace ShoppingList.Service
 
         public CartFindResponse FindCartById(CartFindRequest request)
         {
-            CartFindResponse response = new CartFindResponse();
-            List<CartValidationErrors> validationErrors = new List<CartValidationErrors>();
-            List<DatabaseErrors> dbErrors = new List<DatabaseErrors>();
+            var response = new CartFindResponse();
+            var validationErrors = _cartValidation.CartFindRequestValidation.Validate(request);
+            var dbErrors = new List<DatabaseErrors>();
 
             if (validationErrors.Count != 0)
             {
@@ -68,9 +74,9 @@ namespace ShoppingList.Service
                 try
                 {
                     response.Cart = _cartRepository.ReadById(request);
-                    //response.Amount = _calculateTotalAmount(response.Cart.Products);
+                    response.Amount = _calculateTotalAmount(response.Cart.Products);
                 }
-                catch (SqlException ex)
+                catch (SqlException)
                 {
                     dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
                 }
@@ -79,14 +85,14 @@ namespace ShoppingList.Service
             return response;
         }
 
-        private decimal _calculateTotalAmount(ICollection<DataModel.Product> products)
+        private decimal _calculateTotalAmount(ICollection<ProductCart> products)
         {
             decimal amount = 0;
             if (products != null && products.Count != 0)
             {
                 foreach (var product in products)
                 {
-                    amount = Decimal.Add(amount, product.CalculateActualPrice());
+                    amount = Decimal.Add(amount, product.Product.CalculateActualPrice());
                 }
             }
 
@@ -95,8 +101,47 @@ namespace ShoppingList.Service
 
         public AddProductToCartResponse AddToCart(AddProductToCartRequest request)
         {
+            var productFindRequest = new ProductFindRequest
+            {
+                ProductId = request.ProductId
+            };
+
+            var cartFindRequest = new CartFindRequest
+            {
+                CartId = request.CartId
+            };
+
+            var product = _productService.FindById(productFindRequest).FoundProduct;
+            var cart = FindCartById(cartFindRequest).Cart;
+
+            var validationErrors = _cartValidation.AddProductToCartValidation.Validate(request);
+            var DBErrors = new List<DatabaseErrors>();
+
             var response = new AddProductToCartResponse();
-            var validationErrors = new List<CartValidationErrors>();
+
+            if (validationErrors.Count != 0)
+            {
+                response.ValidationErrors = validationErrors;
+            }
+            else
+            {
+                try
+                {
+                    response.HasAdded = _cartRepository.ToCart(product, cart);
+                }
+                catch (UniqueKeyViolationException)
+                {
+                    DBErrors.Add(DatabaseErrors.DB_DUPLICATE_ENTRY);
+                }
+                response.DBErrors = DBErrors;
+            }
+            return response;
+        }
+
+        public RemoveProductFromCartResponse RemoveFromCart(RemoveProductFromCartRequest request)
+        {
+            var response = new RemoveProductFromCartResponse();
+            var validationErrors = _cartValidation.RemoveFromCartRequestValidation.Validate(request);
             var DBErrors = new List<DatabaseErrors>();
 
             if (validationErrors.Count != 0)
@@ -107,16 +152,60 @@ namespace ShoppingList.Service
             {
                 try
                 {
-
-                }
-                catch (SqlException)
+                    response.HasRemoved = _cartRepository.RemoveFromCart(_findProductInDB(request.ProductId), _findCartInDB(request.CartId));
+                } catch(SqlException)
                 {
-
                     DBErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
                 }
                 response.DBErrors = DBErrors;
+            }
+
+            return response;
+        }
+
+        private long _findCartInDB(long id)
+        {
+            var cartFindRequest = new CartFindRequest
+            {
+                CartId = id
+            };
+
+            return FindCartById(cartFindRequest).Cart.Id;
+        }
+
+        private long _findProductInDB(long id)
+        {
+            var productFindRequest = new ProductFindRequest
+            {
+                ProductId = id
+            };
+            return _productService.FindById(productFindRequest).FoundProduct.Id;
+        }
+
+        public CartClearResponse ClearCart(CartClearRequest request)
+        {
+            var response = new CartClearResponse();
+            var validationErrors = _cartValidation.CartClearRequestValidation.Validate(request);
+            var dbErrors = new List<DatabaseErrors>();
+
+            if (validationErrors.Count != 0)
+            {
+                response.ValidationErrors = validationErrors;
+            }
+            else
+            {
+                try
+                {
+                    response.HasClear = _cartRepository.Clear(request.CartId);
+                }
+                catch (SqlException)
+                {
+                    dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
+                }
+                response.DBErrors = dbErrors;
             }
             return response;
         }
     }
 }
+    

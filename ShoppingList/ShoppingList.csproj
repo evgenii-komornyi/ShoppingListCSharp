@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{329EBCBE-7C3D-4A89-897F-85291C9F6868}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>ShoppingList</RootNamespace>
     <AssemblyName>ShoppingList</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -36,7 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ShoppingList.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=5.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -55,6 +56,11 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -74,6 +80,7 @@
     <Compile Include="DataModel\Cart.cs" />
     <Compile Include="DataModel\Category.cs" />
     <Compile Include="DataModel\Product.cs" />
+    <Compile Include="DataModel\ProductCart.cs" />
     <Compile Include="DataModel\Request\BasicRequest.cs" />
     <Compile Include="DataModel\Request\Cart\AddProductToCartRequest.cs" />
     <Compile Include="DataModel\Request\Cart\CartBasicRequest.cs" />
@@ -91,6 +98,7 @@
     <Compile Include="DataModel\Request\User\UserFindRequest.cs" />
     <Compile Include="DataModel\Request\User\UserDeleteRequest.cs" />
     <Compile Include="DataModel\Request\User\UserUpdateRequest.cs" />
+    <Compile Include="DataModel\Response\BasicResponse.cs" />
     <Compile Include="DataModel\Response\Cart\AddProductToCartResponse.cs" />
     <Compile Include="DataModel\Response\Cart\CartBasicResponse.cs" />
     <Compile Include="DataModel\Response\Cart\CartClearResponse.cs" />
@@ -109,20 +117,33 @@
     <Compile Include="DataModel\Response\User\UserUpdateResponse.cs" />
     <Compile Include="DataModel\ShoppingListContext.cs" />
     <Compile Include="DataModel\User.cs" />
-    <Compile Include="Migrations\202007141244353_LastMigration.cs" />
-    <Compile Include="Migrations\202007141244353_LastMigration.Designer.cs">
-      <DependentUpon>202007141244353_LastMigration.cs</DependentUpon>
+    <Compile Include="Exceptions\UniqueKeyViolationException.cs" />
+    <Compile Include="Helper\DbContextHelper.cs" />
+    <Compile Include="Migrations\202007311230120_LastUpdate.cs" />
+    <Compile Include="Migrations\202007311230120_LastUpdate.Designer.cs">
+      <DependentUpon>202007311230120_LastUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008051143123_Annotations_And_CategoryString_Added.cs" />
+    <Compile Include="Migrations\202008051143123_Annotations_And_CategoryString_Added.Designer.cs">
+      <DependentUpon>202008051143123_Annotations_And_CategoryString_Added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Cart\CartRepository.cs" />
-    <Compile Include="Repository\Cart\ICart.cs" />
-    <Compile Include="Repository\Product\IProduct.cs" />
-    <Compile Include="Repository\Product\ProductRepository.cs" />
+    <Compile Include="Repository\CartRepository.cs" />
+    <Compile Include="Repository\ICart.cs" />
+    <Compile Include="Repository\IProduct.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Service\Cart\CartService.cs" />
+    <Compile Include="Service\Cart\ICartService.cs" />
+    <Compile Include="Service\Product\IProductService.cs" />
     <Compile Include="Service\Product\ProductService.cs" />
-    <Compile Include="Utils\Configuration.cs" />
+    <Compile Include="Validation\Cart\AddProductToCartValidation.cs" />
+    <Compile Include="Validation\Cart\CartClearRequestValidation.cs" />
+    <Compile Include="Validation\Cart\CartFindRequestValidation.cs" />
+    <Compile Include="Validation\Cart\CartRemoveRequestValidation.cs" />
+    <Compile Include="Validation\Cart\CartValidation.cs" />
+    <Compile Include="Validation\Cart\CartCreateRequestValidation.cs" />
+    <Compile Include="Validation\Cart\RemoveFromCartRequestValidation.cs" />
     <Compile Include="Validation\Errors\CartValidationErrors.cs" />
     <Compile Include="Validation\Errors\DatabaseErrors.cs" />
     <Compile Include="Validation\Errors\ProductValidationErrors.cs" />
@@ -131,18 +152,21 @@
     <Compile Include="Validation\Product\FindRequestValidation.cs" />
     <Compile Include="Validation\Product\ProductValidation.cs" />
     <Compile Include="Validation\Product\UpdateRequestValidation.cs" />
+    <Compile Include="Validation\Validatable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\User\" />
     <Folder Include="Service\User\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007141244353_LastMigration.resx">
-      <DependentUpon>202007141244353_LastMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007311230120_LastUpdate.resx">
+      <DependentUpon>202007311230120_LastUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008051143123_Annotations_And_CategoryString_Added.resx">
+      <DependentUpon>202008051143123_Annotations_And_CategoryString_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

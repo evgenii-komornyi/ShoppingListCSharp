@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ShoppingList.DataModel.Response.Cart
 {
-    public abstract class CartBasicResponse
+    public abstract class CartBasicResponse : BasicResponse
     {
         public List<CartValidationErrors> ValidationErrors { get; set; }
         public List<DatabaseErrors> DBErrors { get; set; }

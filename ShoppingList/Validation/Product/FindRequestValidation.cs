@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ShoppingList.Validation.Product
 {
-    public class FindRequestValidation
+    public class FindRequestValidation : Validatable<ProductFindRequest, ProductValidationErrors>
     {
-        public List<ProductValidationErrors> ValidateFindRequest(ProductFindRequest findFieldRequest)
+        public List<ProductValidationErrors> Validate(ProductFindRequest findFieldRequest)
         {
             return new List<ProductValidationErrors>(ValidateSearchCriteria(findFieldRequest));
         }
@@ -19,14 +19,14 @@ namespace ShoppingList.Validation.Product
         {
             List<ProductValidationErrors> allErrors = new List<ProductValidationErrors>();
 
-            if (searchCriteria.Id == null
+            if (searchCriteria.ProductId == null
                     && searchCriteria.Name == null
                     && searchCriteria.Category == null)
             {
                 allErrors.Add(ProductValidationErrors.NO_SEARCH_CRITERIA);
             }
 
-            if (searchCriteria.Id != null
+            if (searchCriteria.ProductId != null
                     && searchCriteria.Name != null
                     && searchCriteria.Category != null)
             {

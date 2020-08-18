@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ShoppingList.Validation.Product
 {
-    public class DeleteRequestValidation
+    public class DeleteRequestValidation : Validatable<ProductDeleteRequest, ProductValidationErrors>
     {
-        public List<ProductValidationErrors> ValidateDeleteRequest(ProductDeleteRequest deleteRequest)
+        public List<ProductValidationErrors> Validate(ProductDeleteRequest deleteRequest)
         {
             List<ProductValidationErrors> allErrors = new List<ProductValidationErrors>();
 

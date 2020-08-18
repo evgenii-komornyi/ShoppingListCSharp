@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace ShoppingList.DataModel
 {
+    [Table("User", Schema = "dbo")]
     public class User
     {
         [Key]
-        public long UserId { get; set; }
+        public long Id { get; set; }
 
         [Required]
         [MaxLength(10)]

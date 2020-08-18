@@ -12,8 +12,15 @@ namespace ShoppingList.DataModel.Request.Product
         [Required]
         public string Name { get; set; }
 
-        [Required]
+        
         public Category Category { get; set; }
+        
+        [Required]
+        public string CategoryString
+        {
+            get { return Category.ToString(); }
+            private set { Category = (Category)Enum.Parse(typeof(Category), value); }
+        }
 
         [Required]
         public decimal Price { get; set; }

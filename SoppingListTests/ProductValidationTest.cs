@@ -33,7 +33,7 @@ namespace ShoppingListTests
                 Description = description
             };
 
-            var listErrors = validation.CreateRequestValidation.ValidateCreateRequest(request);
+            var listErrors = validation.CreateRequestValidation.Validate(request);
 
             foreach (var error in listErrors)
             {

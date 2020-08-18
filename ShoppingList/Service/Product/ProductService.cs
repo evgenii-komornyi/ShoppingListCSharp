@@ -1,35 +1,34 @@
 ﻿using ShoppingList.DataModel;
 using ShoppingList.DataModel.Request.Product;
 using ShoppingList.DataModel.Response.Product;
-using ShoppingList.Repository.Product;
+using ShoppingList.Exceptions;
+using ShoppingList.Repository;
+using ShoppingList.Service.Product;
 using ShoppingList.Validation;
 using ShoppingList.Validation.Errors;
 using ShoppingList.Validation.Product;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ShoppingList.Service.Product
+namespace ShoppingList
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
-        private IProduct _productRepository;
-        private ProductValidation _validation;
+        readonly IProduct _productRepository;
+        readonly ProductValidation _validation;
 
         public ProductService(IProduct repository, ProductValidation validation)
         {
-            this._productRepository = repository;
-            this._validation = validation;
+            _productRepository = repository;
+            _validation = validation;
         }
 
-        public ProductCreateResponse AddProduct(ProductCreateRequest request)
+        public ProductCreateResponse CreateProduct(ProductCreateRequest request)
         {
-            ProductCreateResponse response = new ProductCreateResponse();
-            List<ProductValidationErrors> validationErrors = _validation.CreateRequestValidation.ValidateCreateRequest(request);
-            List<DatabaseErrors> dbErrors = new List<DatabaseErrors>();
+            var response = new ProductCreateResponse();
+            var validationErrors = _validation.CreateRequestValidation.Validate(request);
+            var dbErrors = new List<DatabaseErrors>();
 
             if (validationErrors.Count != 0)
             {
@@ -39,22 +38,16 @@ namespace ShoppingList.Service.Product
             {
                 try
                 {
-                    DataModel.Product product = new DataModel.Product(request.Name, request.Category, request.Price);
+                    var product = AddProductToDB(request);
 
-                    if (request.Discount == null)
-                    {
-                        product.Discount = Decimal.Zero;
-                    }
-                    else
-                    {
-                        product.Discount = request.Discount;
-                    }
-
-                    product.Description = request.Description;
-                    response.Product = _productRepository.Create(product);
-                } catch(SqlException ex)
+                    if (product == null) throw new NullReferenceException("Product not found");
+                    
+                    response.Product = product;
+                }
+                catch (NullReferenceException)
                 {
-                    dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
+                        dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
+                    
                 }
                 response.DBErrors = dbErrors;
             }
@@ -62,16 +55,26 @@ namespace ShoppingList.Service.Product
             return response;
         }
 
+        private Product AddProductToDB(ProductCreateRequest request)
+        {   
+            return _productRepository.Create(
+                new Product(request.Name, request.Category, request.Price)
+                { 
+                    Discount = (request.Discount == null) ? Decimal.Zero : request.Discount,
+                    Description = request.Description
+                }
+            );
+        }
+
         public ProductFindResponse FindById(ProductFindRequest request)
         {
-            ProductFindResponse response = new ProductFindResponse();
-            List<ProductValidationErrors> validationErrors = _validation.FindRequestValidation.ValidateFindRequest(request);
-            List<DatabaseErrors> dbErrors = new List<DatabaseErrors>();
-         
+            var response = new ProductFindResponse();
+            var validationErrors = _validation.FindRequestValidation.Validate(request);
+            var dbErrors = new List<DatabaseErrors>();
+
             if (validationErrors.Count != 0)
             {
                 response.ValidationErrors = validationErrors;
-
             }
             else
             {
@@ -79,7 +82,7 @@ namespace ShoppingList.Service.Product
                 {
                     response.FoundProduct = _productRepository.ReadSingle(request);
                 }
-                catch (SqlException ex)
+                catch (SqlException)
                 {
                     dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
                 }
@@ -91,14 +94,14 @@ namespace ShoppingList.Service.Product
 
         public ProductFindResponse FindAll()
         {
-            ProductFindResponse response = new ProductFindResponse();
-            List<DatabaseErrors> dbErrors = new List<DatabaseErrors>();
+            var response = new ProductFindResponse();
+            var dbErrors = new List<DatabaseErrors>();
 
             try
             {
                 response.ListOfFoundProducts = _productRepository.ReadAll();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
             }
@@ -108,9 +111,9 @@ namespace ShoppingList.Service.Product
 
         public ProductUpdateResponse UpdateById(ProductUpdateRequest request)
         {
-            ProductUpdateResponse response = new ProductUpdateResponse();
-            List<ProductValidationErrors> validationErrors = _validation.UpdateRequestValidation.ValidateUpdateRequest(request);
-            List<DatabaseErrors> dbErrors = new List<DatabaseErrors>();
+            var response = new ProductUpdateResponse();
+            var validationErrors = _validation.UpdateRequestValidation.Validate(request);
+            var dbErrors = new List<DatabaseErrors>();
 
             if (validationErrors.Count != 0)
             {
@@ -120,9 +123,21 @@ namespace ShoppingList.Service.Product
             {
                 try
                 {
-                    response.UpdatedProduct = _productRepository.Update(request);
+                    if (_productRepository.Update(request) == 1)
+                    {
+                        var product = new Product
+                        {
+                            Id = request.Id,
+                            Name = request.Name,
+                            Category = request.Category,
+                            Price = request.Price,
+                            Discount = request.Discount,
+                            Description = request.Description
+                        };
+                        response.UpdatedProduct = product;
+                    }
                 }
-                catch (SqlException ex)
+                catch (SqlException)
                 {
                     dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
                 }
@@ -134,13 +149,13 @@ namespace ShoppingList.Service.Product
 
         public ProductDeleteResponse Delete(ProductDeleteRequest request)
         {
-            ProductDeleteResponse response = new ProductDeleteResponse();
-            List<ProductValidationErrors> validationErrors = _validation.DeleteRequestValidation.ValidateDeleteRequest(request);
-            List<DatabaseErrors> dbErrors = new List<DatabaseErrors>();
+            var response = new ProductDeleteResponse();
+            var validationErrors = _validation.DeleteRequestValidation.Validate(request);
+            var dbErrors = new List<DatabaseErrors>();
 
             if (validationErrors.Count != 0)
             {
-                response.ValidationErrors = validationErrors; 
+                response.ValidationErrors = validationErrors;
             }
             else
             {
@@ -148,18 +163,13 @@ namespace ShoppingList.Service.Product
                 {
                     response.HasDeleted = _productRepository.Delete(request);
                 }
-                catch (SqlException ex)
+                catch (SqlException)
                 {
                     dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
                 }
                 response.DBErrors = dbErrors;
             }
             return response;
-        }
-
-        public void Save()
-        {
-            _productRepository.SaveChanges();
         }
     }
 }
