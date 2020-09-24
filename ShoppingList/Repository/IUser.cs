@@ -1,4 +1,5 @@
 ﻿using ShoppingList.DataModel;
+using ShoppingList.DataModel.Request.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace ShoppingList.Repository
     public interface IUser
     {
         User Create(User user);
-        User ReadById(long id);
-        User Update(long id, User user);
-        bool Delete(long id);
+        User ReadById(UserFindRequest request);
+        int Update(UserUpdateRequest request);
+        bool Delete(UserDeleteRequest request);
     }
 }

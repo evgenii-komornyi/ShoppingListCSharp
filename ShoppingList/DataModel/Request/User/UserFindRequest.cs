@@ -9,5 +9,6 @@ namespace ShoppingList.DataModel.Request.User
     public class UserFindRequest
     {
         public long Id { get; set; }
+        public string Login { get; set; }
     }
 }

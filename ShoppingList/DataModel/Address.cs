@@ -35,5 +35,8 @@ namespace ShoppingList.DataModel
 
         [Column("Phone")]
         public string Phone { get; set; }
+
+        [Column("User_Id")]
+        public long User_Id { get; set; }
     }
 }

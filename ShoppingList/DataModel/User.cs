@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoppingList.Migrations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -52,9 +53,11 @@ namespace ShoppingList.DataModel
         [Column("Role")]
         public string Role { get; set; }
 
-        [Column("DefAddr_Id")]
-        public long DefaultAddress_Id { get; set; }
+        [Column("Address_Address_Id")]
+        public long Address_Id { get; set; }
 
-        public ICollection<Address> Addresses { get; set; }
+        [ForeignKey("Address_Id")]
+        public Address Address { get; set; }
+        public virtual List<Address> Addresses { get; set; }
     }
 }

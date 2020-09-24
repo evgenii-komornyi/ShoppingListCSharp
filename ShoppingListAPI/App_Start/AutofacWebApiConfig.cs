@@ -5,6 +5,7 @@ using ShoppingList.DataModel;
 using ShoppingList.Repository;
 using ShoppingList.Service;
 using ShoppingList.Service.Product;
+using ShoppingList.Service.User;
 using ShoppingList.Validation.Cart;
 using ShoppingList.Validation.Product;
 using System;
@@ -53,6 +54,9 @@ namespace ShoppingListAPI.App_Start
 
             builder.RegisterType<FileStorageRepository>().As<IFileStorage>();
             builder.RegisterType<FileStorageService>().As<IFileStorageService>();
+
+            builder.RegisterType<UserRepository>().As<IUser>();
+            builder.RegisterType<UserService>().As<IUserService>();
 
             builder.RegisterType<CartValidation>().AsSelf();
             builder.RegisterType<CartCreateRequestValidation>().AsSelf();

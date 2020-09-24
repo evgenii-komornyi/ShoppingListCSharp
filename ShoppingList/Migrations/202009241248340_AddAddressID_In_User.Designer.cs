@@ -7,13 +7,13 @@ namespace ShoppingList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddUser_Addresses_Tables : IMigrationMetadata
+    public sealed partial class AddAddressID_In_User : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUser_Addresses_Tables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAddressID_In_User));
         
         string IMigrationMetadata.Id
         {
-            get { return "202009231435170_AddUser_Addresses_Tables"; }
+            get { return "202009241248340_AddAddressID_In_User"; }
         }
         
         string IMigrationMetadata.Source

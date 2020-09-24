@@ -160,9 +160,9 @@
     <Compile Include="Migrations\202009221651374_cascadeDeleteTrue.Designer.cs">
       <DependentUpon>202009221651374_cascadeDeleteTrue.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202009231435170_AddUser_Addresses_Tables.cs" />
-    <Compile Include="Migrations\202009231435170_AddUser_Addresses_Tables.Designer.cs">
-      <DependentUpon>202009231435170_AddUser_Addresses_Tables.cs</DependentUpon>
+    <Compile Include="Migrations\202009241248340_AddAddressID_In_User.cs" />
+    <Compile Include="Migrations\202009241248340_AddAddressID_In_User.Designer.cs">
+      <DependentUpon>202009241248340_AddAddressID_In_User.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,6 +184,8 @@
     <Compile Include="Service\FileStorage\IFileStorageService.cs" />
     <Compile Include="Service\Product\IProductService.cs" />
     <Compile Include="Service\Product\ProductService.cs" />
+    <Compile Include="Service\User\IUserService.cs" />
+    <Compile Include="Service\User\UserService.cs" />
     <Compile Include="Validation\Cart\AddProductToCartValidation.cs" />
     <Compile Include="Validation\Cart\CartClearRequestValidation.cs" />
     <Compile Include="Validation\Cart\CartFindRequestValidation.cs" />
@@ -194,6 +196,7 @@
     <Compile Include="Validation\Errors\CartValidationErrors.cs" />
     <Compile Include="Validation\Errors\DatabaseErrors.cs" />
     <Compile Include="Validation\Errors\ProductValidationErrors.cs" />
+    <Compile Include="Validation\Errors\UserValidationErrors.cs" />
     <Compile Include="Validation\Product\CreateRequestValidation.cs" />
     <Compile Include="Validation\Product\DeleteRequestValidation.cs" />
     <Compile Include="Validation\Product\FindRequestValidation.cs" />
@@ -205,9 +208,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\User\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202009181042485_newLastMigration.resx">
       <DependentUpon>202009181042485_newLastMigration.cs</DependentUpon>
@@ -224,8 +225,8 @@
     <EmbeddedResource Include="Migrations\202009221651374_cascadeDeleteTrue.resx">
       <DependentUpon>202009221651374_cascadeDeleteTrue.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009231435170_AddUser_Addresses_Tables.resx">
-      <DependentUpon>202009231435170_AddUser_Addresses_Tables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202009241248340_AddAddressID_In_User.resx">
+      <DependentUpon>202009241248340_AddAddressID_In_User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

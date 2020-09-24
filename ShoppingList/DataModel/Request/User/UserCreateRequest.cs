@@ -8,6 +8,6 @@ namespace ShoppingList.DataModel.Request.User
 {
     public class UserCreateRequest : UserBasicRequest
     {
-
+        public long UserId { get; set; }
     }
 }
