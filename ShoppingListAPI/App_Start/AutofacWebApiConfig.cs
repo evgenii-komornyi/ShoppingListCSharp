@@ -35,9 +35,8 @@ namespace ShoppingListAPI.App_Start
         private static IContainer RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            
-            builder.RegisterType<ProductService>().As<IProductService>();
 
+            builder.RegisterType<ProductService>().As<IProductService>();
             builder.RegisterType<ProductRepository>().As<IProduct>();
 
             builder.RegisterType<ProductValidation>().AsSelf();
@@ -48,6 +47,12 @@ namespace ShoppingListAPI.App_Start
 
             builder.RegisterType<CartRepository>().As<ICart>();
             builder.RegisterType<CartService>().As<ICartService>();
+
+            builder.RegisterType<CategoryRepository>().As<ICategory>();
+            builder.RegisterType<CategoryService>().As<ICategoryService>();
+
+            builder.RegisterType<FileStorageRepository>().As<IFileStorage>();
+            builder.RegisterType<FileStorageService>().As<IFileStorageService>();
 
             builder.RegisterType<CartValidation>().AsSelf();
             builder.RegisterType<CartCreateRequestValidation>().AsSelf();

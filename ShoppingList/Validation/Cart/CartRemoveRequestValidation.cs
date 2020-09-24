@@ -24,7 +24,7 @@ namespace ShoppingList
         {
             List<CartValidationErrors> errorsList = new List<CartValidationErrors>();
 
-            if (cart.Products.Count != 0)
+            if (cart.ProductsCarts.Count != 0)
             {
                 errorsList.Add(CartValidationErrors.CART_NOT_EMPTY);
             }

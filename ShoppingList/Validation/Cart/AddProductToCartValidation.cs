@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace ShoppingList
 {
-    public class AddProductToCartValidation : Validatable<AddProductToCartRequest, CartValidationErrors>
+    public class AddProductToCartValidation : Validatable<AddUpdateCartRequest, CartValidationErrors>
     {
-        public List<CartValidationErrors> Validate(AddProductToCartRequest request)
+        public List<CartValidationErrors> Validate(AddUpdateCartRequest request)
         {
             List<CartValidationErrors> allErrors = new List<CartValidationErrors>();
 

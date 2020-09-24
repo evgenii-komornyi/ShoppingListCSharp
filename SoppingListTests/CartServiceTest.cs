@@ -4,11 +4,8 @@ using ShoppingList.DataModel;
 using ShoppingList.DataModel.Request.Cart;
 using ShoppingList.DataModel.Request.Product;
 using ShoppingList.Repository;
-using ShoppingList.Service;
 using ShoppingList.Service.Product;
 using ShoppingList.Validation.Cart;
-using System;
-using System.Collections.Generic;
 using Xunit;
 using Assert = Xunit.Assert;
 
@@ -90,7 +87,7 @@ namespace ShoppingListTests
         public void ShouldAddProductToCart()
         { 
             var mockDB = new Mock<ICart>();
-            mockDB.Setup(c => c.ToCart(GetProduct(), GetCart()))
+            mockDB.Setup(c => c.ToCart(GetProduct(), GetCart(), 1))
                 .Returns(true);
             
             var mockProductService = new Mock<IProductService>();
@@ -114,12 +111,13 @@ namespace ShoppingListTests
             Assert.True(actual);
         }
 
-        private AddProductToCartRequest AddItemToCart()
+        private AddUpdateCartRequest AddItemToCart()
         {
-            return new AddProductToCartRequest
+            return new AddUpdateCartRequest
             {
                 ProductId = 2,
-                CartId = 1
+                CartId = 1,
+                Quantity = 1
             };
         }
 
@@ -157,7 +155,7 @@ namespace ShoppingListTests
             {
                 Id = 2,
                 Name = "Beef",
-                Category = Category.Meat,
+                Category_Id = 6,
                 Price = 50,
                 Discount = 50,
                 Description = "Fresh meat from Cow."

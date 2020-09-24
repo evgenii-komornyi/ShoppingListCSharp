@@ -14,15 +14,16 @@ namespace ShoppingList.DataModel
         [Key]
         [Column("Id")]
         public long Id { get; set; }
+        
         [Column("User_Id")]
         public long UserId { get; set; }
         public virtual User User { get; set; }
 
-        public virtual ICollection<ProductCart> Products { get; set; }
+        public virtual ICollection<ProductCart> ProductsCarts { get; set; }
 
         public Cart(ICollection<ProductCart> products)
         {
-            this.Products = new HashSet<ProductCart>();
+            this.ProductsCarts = new HashSet<ProductCart>();
         }
 
         public Cart()
@@ -31,7 +32,7 @@ namespace ShoppingList.DataModel
 
         public override string ToString()
         {
-            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(UserId)}={UserId.ToString()}, {nameof(User)}={User}, {nameof(Products)}={Products}}}";
+            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(UserId)}={UserId.ToString()}, {nameof(User)}={User}, {nameof(ProductsCarts)}={ProductsCarts}}}";
         }
 
         public override bool Equals(object obj)
@@ -40,7 +41,7 @@ namespace ShoppingList.DataModel
                    Id == cart.Id &&
                    UserId == cart.UserId &&
                    EqualityComparer<User>.Default.Equals(User, cart.User) &&
-                   EqualityComparer<ICollection<ProductCart>>.Default.Equals(Products, cart.Products);
+                   EqualityComparer<ICollection<ProductCart>>.Default.Equals(ProductsCarts, cart.ProductsCarts);
         }
 
         public override int GetHashCode()
@@ -49,7 +50,7 @@ namespace ShoppingList.DataModel
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + UserId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<User>.Default.GetHashCode(User);
-            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<ProductCart>>.Default.GetHashCode(Products);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<ProductCart>>.Default.GetHashCode(ProductsCarts);
             return hashCode;
         }
     }

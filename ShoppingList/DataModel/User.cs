@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,33 +14,47 @@ namespace ShoppingList.DataModel
     public class User
     {
         [Key]
+        [Column("Id")]
         public long Id { get; set; }
 
         [Required]
         [MaxLength(10)]
-        public string FirstName { get; set; }
+        [Column("FName")]
+        public string FName { get; set; }
 
         [Required]
         [MaxLength(15)]
-        public string LastName { get; set; }
+        [Column("LName")]
+        public string LName { get; set; }
 
         [Required]
         [MaxLength(20)]
+        [Column("Birthday")]
         public string Birthday { get; set; }
 
         [Required]
         [MaxLength(20)]
         [Index("IX_UserUniqueLogin", 1, IsUnique = true)]
+        [Column("Login")]
         public string Login { get; set; }
 
-        [Required]
         [MaxLength(100)]
-        public string MD5 { get; set; }
+        [Column("Hash")]
+        public string Hash { get; set; }
 
         [MaxLength(100)]
+        [Column("Salt")]
         public string Salt { get; set; }
 
-        [Required]
+        [Column("CreationDate")]
         public DateTime CreationDate { get; set; }
+
+        [Column("Role")]
+        public string Role { get; set; }
+
+        [Column("DefAddr_Id")]
+        public long DefaultAddress_Id { get; set; }
+
+        public ICollection<Address> Addresses { get; set; }
     }
 }

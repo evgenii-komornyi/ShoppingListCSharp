@@ -14,13 +14,13 @@ namespace ShoppingListTests
     public class ProductServiceTests
     {
         private ProductService _victim;
-        
+
         private CreateRequestValidation _createRequestValidation;
         private FindRequestValidation _findRequestValidation;
         private UpdateRequestValidation _updateRequestValidation;
         private DeleteRequestValidation _deleteRequestValidation;
 
-        private ProductValidation _validation; 
+        private ProductValidation _validation;
 
         [Fact]
         public void ShouldReturnCreatedProduct()
@@ -35,7 +35,7 @@ namespace ShoppingListTests
             var mockDB = new Mock<IProduct>();
             mockDB.Setup(x => x.Create(getProduct()))
                 .Returns(getProduct());
-            
+
             _victim = new ProductService(mockDB.Object, _validation);
 
             var actual = _victim.CreateProduct(request());
@@ -46,9 +46,10 @@ namespace ShoppingListTests
 
         private Product getProduct()
         {
-            Product product = new Product("Milk", Category.Milk, 50);
+            Product product = new Product("Milk", 1, 50);
             product.Discount = 50;
             product.Description = "Good milk from latvia.";
+            product.File_Id = 2;
 
             return product;
         }
@@ -57,11 +58,12 @@ namespace ShoppingListTests
         {
             ProductCreateRequest request = new ProductCreateRequest();
             request.Name = "Milk";
-            request.Category = Category.Milk;
+            request.Category_Id = 1;
             request.Price = 50;
             request.Discount = 50;
             request.Description = "Good milk from latvia.";
-            
+            request.File_Id = 2;
+
             return request;
         }
 
@@ -93,24 +95,27 @@ namespace ShoppingListTests
             {
                 new Product {
                     Name = "Milk",
-                    Category = Category.Milk,
+                    Category_Id = 1,
                     Price = 50,
                     Discount = 20,
-                    Description = "Milk from latvia"
+                    Description = "Milk from latvia",
+                    File_Id = 2
                 },
                 new Product {
                     Name = "Beef",
-                    Category = Category.Meat,
+                    Category_Id = 2,
                     Price = 100,
                     Discount = 50,
-                    Description = "Beef from latvia"
+                    Description = "Beef from latvia",
+                    File_Id = 2
                 },
                 new Product {
                     Name = "Tess",
-                    Category = Category.Tea,
+                    Category_Id = 8,
                     Price = 25,
                     Discount = 0,
-                    Description = "Tea from latvia"
+                    Description = "Tea from latvia",
+                    File_Id = 2
                 }
             };
             return products;
@@ -136,10 +141,11 @@ namespace ShoppingListTests
                 {
                     Id = 1,
                     Name = "Milk",
-                    Category = Category.Milk,
+                    Category_Id = 1,
                     Price = 50,
                     Discount = 20,
-                    Description = "Milk from latvia"
+                    Description = "Milk from latvia",
+                    File_Id = 2
                 });
 
             _victim = new ProductService(mock.Object, _validation);
@@ -162,10 +168,11 @@ namespace ShoppingListTests
             ProductUpdateRequest request = new ProductUpdateRequest();
             request.Id = 2;
             request.Name = "Pork";
-            request.Category = Category.Meat;
+            request.Category_Id = 2;
             request.Price = 150;
             request.Discount = 50;
             request.Description = "Pork from Nigeria.";
+            request.File_Id = 2;
 
             var mock = new Mock<IProduct>();
 
@@ -182,6 +189,7 @@ namespace ShoppingListTests
             Assert.Equal(expectedName, actual.Name);
             Assert.Equal(expectedPrice, actual.Price);
             Assert.Equal(expectedDiscount, actual.Discount);
+            Assert.Equal("default.png", actual.FileName);
         }
 
         [Fact]
@@ -214,26 +222,29 @@ namespace ShoppingListTests
                 new Product {
                     Id = 1,
                     Name = "Milk",
-                    Category = Category.Milk,
+                    Category_Id = 1,
                     Price = 50,
                     Discount = 20,
-                    Description = "Milk from latvia"
+                    Description = "Milk from latvia",
+                    File_Id = 2
                 },
                 new Product {
                     Id = 2,
                     Name = "Beef",
-                    Category = Category.Meat,
+                    Category_Id = 2,
                     Price = 100,
                     Discount = 50,
-                    Description = "Beef from latvia"
+                    Description = "Beef from latvia",
+                    File_Id = 2
                 },
                 new Product {
                     Id = 3,
                     Name = "Tess",
-                    Category = Category.Tea,
+                    Category_Id = 8,
                     Price = 25,
                     Discount = 0,
-                    Description = "Tea from latvia"
+                    Description = "Tea from latvia",
+                    File_Id = 2
                 }
             };
             return products;

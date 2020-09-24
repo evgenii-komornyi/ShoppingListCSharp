@@ -18,5 +18,7 @@ namespace ShoppingList.DataModel
         [Key, Column(Order = 2)]
         public long Cart_CartId { get; set; }
         public virtual Cart Cart { get; set; }
+
+        public int Quantity { get; set; }
     }
 }

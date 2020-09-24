@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTransferObjects.ProductDTO
 {
-    public class ListProductDTO
+    public class ListProductDTO : ProductBasicDTO
     {
         public List<ProductDTO> products { get; set; }
     }

@@ -13,12 +13,12 @@ namespace ShoppingList.DataModel.Response.Product
         public List<ProductValidationErrors> ValidationErrors { get; set; }
         public List<DatabaseErrors> DBErrors { get; set; }
 
-        public bool hasValidationErrors()
+        public bool HasValidationErrors()
         {
             return (ValidationErrors != null && ValidationErrors.Count != 0);
         }
         
-        public bool hasDBErrors()
+        public bool HasDBErrors()
         {
             return (DBErrors != null && DBErrors.Count != 0);
         }

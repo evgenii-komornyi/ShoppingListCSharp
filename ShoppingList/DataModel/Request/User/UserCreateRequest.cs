@@ -8,5 +8,6 @@ namespace ShoppingList.DataModel.Request.User
 {
     public class UserCreateRequest : UserBasicRequest
     {
+
     }
 }

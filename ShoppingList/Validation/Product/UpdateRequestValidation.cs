@@ -18,7 +18,7 @@ namespace ShoppingList.Validation.Product
             allErrors.AddRange(ValidateIDField(updateFieldRequest));
             allErrors.AddRange(ValidateNameField(updateFieldRequest.Name));
             allErrors.AddRange(ValidatePriceField(updateFieldRequest.Price));
-            allErrors.AddRange(ValidateCategoryField(updateFieldRequest.Category));
+            allErrors.AddRange(ValidateCategoryField(updateFieldRequest.Category_Id));
             allErrors.AddRange(ValidateRangeOfDiscount(updateFieldRequest.Discount));
             if (updateFieldRequest.Description.Length != 0)
             {
@@ -37,7 +37,7 @@ namespace ShoppingList.Validation.Product
 
             if (updateRequest.Id == null)
             {
-                errorsList.Add(ProductValidationErrors.NO_UPDATE_CRITERIA);
+                errorsList.Add(ProductValidationErrors.No_update_criteria);
             }
             return errorsList;
         }
@@ -47,11 +47,11 @@ namespace ShoppingList.Validation.Product
             List<ProductValidationErrors> errorsList = new List<ProductValidationErrors>();
             if (name == null)
             {
-                errorsList.Add(ProductValidationErrors.EMPTY_NAME);
+                errorsList.Add(ProductValidationErrors.Empty_name);
             }
             else if (name.Length < 3 || name.Length > 32)
             {
-                errorsList.Add(ProductValidationErrors.NAME_LENGTH_VIOLATION);
+                errorsList.Add(ProductValidationErrors.Name_length_violation);
             }
             return errorsList;
         }
@@ -62,7 +62,7 @@ namespace ShoppingList.Validation.Product
 
             if (price == null)
             {
-                errorsList.Add(ProductValidationErrors.EMPTY_PRICE);
+                errorsList.Add(ProductValidationErrors.Empty_price);
             }
             else
             {
@@ -77,7 +77,7 @@ namespace ShoppingList.Validation.Product
 
             if (price.CompareTo(Decimal.Zero) <= 0)
             {
-                errorsList.Add(ProductValidationErrors.NEGATIVE_OR_ZERO_PRICE);
+                errorsList.Add(ProductValidationErrors.Negative_or_zero_price);
             }
             return errorsList;
         }
@@ -91,19 +91,19 @@ namespace ShoppingList.Validation.Product
                 if (price.CompareTo(20) < 0
                         && discount.CompareTo(Decimal.Zero) != 0)
                 {
-                    errorsList.Add(ProductValidationErrors.DISCOUNT_APPLICATION_LIMIT_VIOLATION);
+                    errorsList.Add(ProductValidationErrors.Discount_application_limit_violation);
                 }
             }
             return errorsList;
         }
 
-        private List<ProductValidationErrors> ValidateCategoryField(Category category)
+        private List<ProductValidationErrors> ValidateCategoryField(long category_id)
         {
             List<ProductValidationErrors> errorsList = new List<ProductValidationErrors>();
 
-            if (category == null)
+            if (category_id == null)
             {
-                errorsList.Add(ProductValidationErrors.EMPTY_CATEGORY);
+                errorsList.Add(ProductValidationErrors.Empty_category);
             }
             return errorsList;
         }
@@ -117,7 +117,7 @@ namespace ShoppingList.Validation.Product
                 if (discount.CompareTo(Decimal.Zero) < 0
                         || discount.CompareTo(100) > 0)
                 {
-                    errorsList.Add(ProductValidationErrors.INVALID_DISCOUNT_RANGE);
+                    errorsList.Add(ProductValidationErrors.Invalid_discount_range);
                 }
             }
             return errorsList;
@@ -131,7 +131,7 @@ namespace ShoppingList.Validation.Product
             {
                 if (description.Length < 8 || description.Length > 60)
                 {
-                    errorsList.Add(ProductValidationErrors.DESCIPTION_LENGTH_VIOLATION);
+                    errorsList.Add(ProductValidationErrors.Description_length_violation);
                 }
             }
             return errorsList;
@@ -143,7 +143,7 @@ namespace ShoppingList.Validation.Product
 
             if (updateRequest.Id == null)
             {
-                allErrors.Add(ProductValidationErrors.NO_UPDATE_CRITERIA);
+                allErrors.Add(ProductValidationErrors.No_update_criteria);
             }
 
             return allErrors;

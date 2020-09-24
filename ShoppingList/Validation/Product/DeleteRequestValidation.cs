@@ -16,7 +16,7 @@ namespace ShoppingList.Validation.Product
 
             if (deleteRequest.Id == null)
             {
-                allErrors.Add(ProductValidationErrors.EMPTY_ID);
+                allErrors.Add(ProductValidationErrors.Empty_id);
             }
 
             return allErrors;

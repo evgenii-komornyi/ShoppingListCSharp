@@ -74,7 +74,7 @@ namespace ShoppingList
                 try
                 {
                     response.Cart = _cartRepository.ReadById(request);
-                    response.Amount = _calculateTotalAmount(response.Cart.Products);
+                    response.Amount = _calculateTotalAmount(response.Cart.ProductsCarts);
                 }
                 catch (SqlException)
                 {
@@ -92,14 +92,14 @@ namespace ShoppingList
             {
                 foreach (var product in products)
                 {
-                    amount = Decimal.Add(amount, product.Product.CalculateActualPrice());
+                    amount = Decimal.Multiply(product.Quantity, Decimal.Add(amount, product.Product.CalculateActualPrice()));
                 }
             }
 
             return amount;
         }
 
-        public AddProductToCartResponse AddToCart(AddProductToCartRequest request)
+        public AddUpdateCartResponse AddToCart(AddUpdateCartRequest request)
         {
             var productFindRequest = new ProductFindRequest
             {
@@ -117,7 +117,7 @@ namespace ShoppingList
             var validationErrors = _cartValidation.AddProductToCartValidation.Validate(request);
             var DBErrors = new List<DatabaseErrors>();
 
-            var response = new AddProductToCartResponse();
+            var response = new AddUpdateCartResponse();
 
             if (validationErrors.Count != 0)
             {
@@ -127,7 +127,7 @@ namespace ShoppingList
             {
                 try
                 {
-                    response.HasAdded = _cartRepository.ToCart(product, cart);
+                    response.HasAdded = _cartRepository.ToCart(product, cart, request.Quantity);
                 }
                 catch (UniqueKeyViolationException)
                 {

@@ -21,16 +21,16 @@ namespace ShoppingList.Validation.Product
 
             if (searchCriteria.ProductId == null
                     && searchCriteria.Name == null
-                    && searchCriteria.Category == null)
+                    && searchCriteria.Category_Id == null)
             {
-                allErrors.Add(ProductValidationErrors.NO_SEARCH_CRITERIA);
+                allErrors.Add(ProductValidationErrors.No_search_criteria);
             }
 
             if (searchCriteria.ProductId != null
                     && searchCriteria.Name != null
-                    && searchCriteria.Category != null)
+                    && searchCriteria.Category_Id != null)
             {
-                allErrors.Add(ProductValidationErrors.CONFLICT_SEARCH_PARAMS);
+                allErrors.Add(ProductValidationErrors.Conflict_params);
             }
             return allErrors;
         }

@@ -58,10 +58,11 @@ namespace ShoppingList
         private Product AddProductToDB(ProductCreateRequest request)
         {   
             return _productRepository.Create(
-                new Product(request.Name, request.Category, request.Price)
+                new Product(request.Name, request.Category_Id, request.Price)
                 { 
                     Discount = (request.Discount == null) ? Decimal.Zero : request.Discount,
-                    Description = request.Description
+                    Description = request.Description,
+                    File_Id = request.File_Id
                 }
             );
         }
@@ -85,6 +86,10 @@ namespace ShoppingList
                 catch (SqlException)
                 {
                     dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
+                } 
+                catch (NullReferenceException)
+                {
+                    validationErrors.Add(ProductValidationErrors.Product_Not_Found);
                 }
                 response.DBErrors = dbErrors;
             }
@@ -129,15 +134,17 @@ namespace ShoppingList
                         {
                             Id = request.Id,
                             Name = request.Name,
-                            Category = request.Category,
+                            Category_Id = request.Category_Id,
                             Price = request.Price,
                             Discount = request.Discount,
-                            Description = request.Description
+                            Description = request.Description,
+                            File_Id = request.File_Id
+                            
                         };
                         response.UpdatedProduct = product;
                     }
                 }
-                catch (SqlException)
+                catch (SqlException e)
                 {
                     dbErrors.Add(DatabaseErrors.DB_CONNECTION_FAILED);
                 }

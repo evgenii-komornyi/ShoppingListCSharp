@@ -4,6 +4,7 @@ using ShoppingList.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using System.Linq;
@@ -35,15 +36,30 @@ namespace ShoppingList.Repository
         {
             using (var _context = new ShoppingListContext())
             {
-                return _context.Cart.FirstOrDefault(c => c.Id == request.CartId);
+                _context.Configuration.LazyLoadingEnabled = false;
+
+                var cart = _context.Cart
+                    .Where(c => c.Id == request.CartId)
+                    .Include(pc => pc.ProductsCarts.Select(p => p.Product))
+                    .FirstOrDefault();
+
+                return cart;
             }
         }
 
-        public bool ToCart(Product product, Cart cart)
+        public bool ToCart(Product product, Cart cart, int quantity)
         {
             using (var _context = new ShoppingListContext())
             {
-                _context.ProductCart.Add(new ProductCart() { Cart_CartId = cart.Id, Product_ProductId = product.Id });
+                var entity = _context.ProductCart.FirstOrDefault(p => p.Product_ProductId == product.Id);
+                if (entity == null)
+                {
+                    entity = new ProductCart() { Cart_CartId = cart.Id, Product_ProductId = product.Id, Quantity = quantity };
+                    _context.ProductCart.Add(entity);
+                }
+
+                entity.Quantity += quantity;
+
                 DbContextHelper.HandleUniqueKeyViolation(() => _context.SaveChanges());
 
                 return true;
@@ -67,7 +83,7 @@ namespace ShoppingList.Repository
 
         public bool Clear(long cartId)
         {
-            var cart = _context.Cart.FirstOrDefault(x => x.Id == cartId).Products;
+            var cart = _context.Cart.FirstOrDefault(x => x.Id == cartId).ProductsCarts;
 
             if (_context.Database.ExecuteSqlCommand("delete ProductCart where (Cart_CartId=@CartId)", new SqlParameter("@CartId", SqlDbType.BigInt){ Value = cartId }) == 1) 
             {

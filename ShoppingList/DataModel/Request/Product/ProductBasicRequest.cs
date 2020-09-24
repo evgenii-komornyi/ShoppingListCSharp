@@ -12,19 +12,14 @@ namespace ShoppingList.DataModel.Request.Product
         [Required]
         public string Name { get; set; }
 
-        
-        public Category Category { get; set; }
-        
         [Required]
-        public string CategoryString
-        {
-            get { return Category.ToString(); }
-            private set { Category = (Category)Enum.Parse(typeof(Category), value); }
-        }
+        public long Category_Id { get; set; }
 
         [Required]
         public decimal Price { get; set; }
         public decimal Discount { get; set; } = 0;
         public string Description { get; set; } = "";
+
+        public long File_Id { get; set; } = 2;
     }
 }

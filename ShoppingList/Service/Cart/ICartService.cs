@@ -10,7 +10,7 @@ namespace ShoppingList.Service
     {
         CartCreateResponse CreateCart(CartCreateRequest request);
         CartFindResponse FindCartById(CartFindRequest request);
-        AddProductToCartResponse AddToCart(AddProductToCartRequest request);
+        AddUpdateCartResponse AddToCart(AddUpdateCartRequest request);
         RemoveProductFromCartResponse RemoveFromCart(RemoveProductFromCartRequest request);
         CartClearResponse ClearCart(CartClearRequest request);
     }

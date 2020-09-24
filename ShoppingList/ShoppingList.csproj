@@ -49,20 +49,39 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.3.1.7\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.IO.Pipelines, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.4.7.1\lib\netstandard2.0\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -77,12 +96,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\Address.cs" />
     <Compile Include="DataModel\Cart.cs" />
     <Compile Include="DataModel\Category.cs" />
+    <Compile Include="DataModel\FileStorage.cs" />
     <Compile Include="DataModel\Product.cs" />
     <Compile Include="DataModel\ProductCart.cs" />
     <Compile Include="DataModel\Request\BasicRequest.cs" />
-    <Compile Include="DataModel\Request\Cart\AddProductToCartRequest.cs" />
+    <Compile Include="DataModel\Request\Cart\AddUpdateCartRequest.cs" />
     <Compile Include="DataModel\Request\Cart\CartBasicRequest.cs" />
     <Compile Include="DataModel\Request\Cart\CartClearRequest.cs" />
     <Compile Include="DataModel\Request\Cart\CartCreateRequest.cs" />
@@ -99,7 +120,7 @@
     <Compile Include="DataModel\Request\User\UserDeleteRequest.cs" />
     <Compile Include="DataModel\Request\User\UserUpdateRequest.cs" />
     <Compile Include="DataModel\Response\BasicResponse.cs" />
-    <Compile Include="DataModel\Response\Cart\AddProductToCartResponse.cs" />
+    <Compile Include="DataModel\Response\Cart\AddUpdateCartResponse.cs" />
     <Compile Include="DataModel\Response\Cart\CartBasicResponse.cs" />
     <Compile Include="DataModel\Response\Cart\CartClearResponse.cs" />
     <Compile Include="DataModel\Response\Cart\CartCreateResponse.cs" />
@@ -119,22 +140,48 @@
     <Compile Include="DataModel\User.cs" />
     <Compile Include="Exceptions\UniqueKeyViolationException.cs" />
     <Compile Include="Helper\DbContextHelper.cs" />
-    <Compile Include="Migrations\202007311230120_LastUpdate.cs" />
-    <Compile Include="Migrations\202007311230120_LastUpdate.Designer.cs">
-      <DependentUpon>202007311230120_LastUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\202009181042485_newLastMigration.cs" />
+    <Compile Include="Migrations\202009181042485_newLastMigration.Designer.cs">
+      <DependentUpon>202009181042485_newLastMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008051143123_Annotations_And_CategoryString_Added.cs" />
-    <Compile Include="Migrations\202008051143123_Annotations_And_CategoryString_Added.Designer.cs">
-      <DependentUpon>202008051143123_Annotations_And_CategoryString_Added.cs</DependentUpon>
+    <Compile Include="Migrations\202009181050124_wasAddedRoleInUser.cs" />
+    <Compile Include="Migrations\202009181050124_wasAddedRoleInUser.Designer.cs">
+      <DependentUpon>202009181050124_wasAddedRoleInUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009211304439_maxLengthFileName50.cs" />
+    <Compile Include="Migrations\202009211304439_maxLengthFileName50.Designer.cs">
+      <DependentUpon>202009211304439_maxLengthFileName50.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009211928056_FileStorageCascadeFalse.cs" />
+    <Compile Include="Migrations\202009211928056_FileStorageCascadeFalse.Designer.cs">
+      <DependentUpon>202009211928056_FileStorageCascadeFalse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009221651374_cascadeDeleteTrue.cs" />
+    <Compile Include="Migrations\202009221651374_cascadeDeleteTrue.Designer.cs">
+      <DependentUpon>202009221651374_cascadeDeleteTrue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009231435170_AddUser_Addresses_Tables.cs" />
+    <Compile Include="Migrations\202009231435170_AddUser_Addresses_Tables.Designer.cs">
+      <DependentUpon>202009231435170_AddUser_Addresses_Tables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CartRepository.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="Repository\FileStorageRepository.cs" />
     <Compile Include="Repository\ICart.cs" />
+    <Compile Include="Repository\ICategory.cs" />
+    <Compile Include="Repository\IFileStorage.cs" />
     <Compile Include="Repository\IProduct.cs" />
+    <Compile Include="Repository\IUser.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\Cart\CartService.cs" />
     <Compile Include="Service\Cart\ICartService.cs" />
+    <Compile Include="Service\Category\CategoryService.cs" />
+    <Compile Include="Service\Category\ICategoryService.cs" />
+    <Compile Include="Service\FileStorage\FileStorageService.cs" />
+    <Compile Include="Service\FileStorage\IFileStorageService.cs" />
     <Compile Include="Service\Product\IProductService.cs" />
     <Compile Include="Service\Product\ProductService.cs" />
     <Compile Include="Validation\Cart\AddProductToCartValidation.cs" />
@@ -162,11 +209,23 @@
     <Folder Include="Service\User\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007311230120_LastUpdate.resx">
-      <DependentUpon>202007311230120_LastUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202009181042485_newLastMigration.resx">
+      <DependentUpon>202009181042485_newLastMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008051143123_Annotations_And_CategoryString_Added.resx">
-      <DependentUpon>202008051143123_Annotations_And_CategoryString_Added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202009181050124_wasAddedRoleInUser.resx">
+      <DependentUpon>202009181050124_wasAddedRoleInUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009211304439_maxLengthFileName50.resx">
+      <DependentUpon>202009211304439_maxLengthFileName50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009211928056_FileStorageCascadeFalse.resx">
+      <DependentUpon>202009211928056_FileStorageCascadeFalse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009221651374_cascadeDeleteTrue.resx">
+      <DependentUpon>202009221651374_cascadeDeleteTrue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009231435170_AddUser_Addresses_Tables.resx">
+      <DependentUpon>202009231435170_AddUser_Addresses_Tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

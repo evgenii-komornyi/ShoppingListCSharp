@@ -8,19 +8,21 @@ namespace ShoppingList.Validation.Errors
 {
     public enum ProductValidationErrors
     {
-        EMPTY_NAME,
-        EMPTY_PRICE,
-        EMPTY_CATEGORY,
-        NAME_LENGTH_VIOLATION,
-        DUPLICATE_NAME,
-        NEGATIVE_OR_ZERO_PRICE,
-        DISCOUNT_APPLICATION_LIMIT_VIOLATION,
-        INVALID_DISCOUNT_RANGE,
-        DESCIPTION_LENGTH_VIOLATION,
-        NO_SEARCH_CRITERIA,
-        CONFLICT_SEARCH_PARAMS,
-        NO_UPDATE_CRITERIA,
-        CONFLICT_UPDATE_PARAMS,
-        EMPTY_ID
+        Empty_name,
+        Empty_price,
+        Empty_category,
+        Name_length_violation,
+        Duplicate_name,
+        Negative_or_zero_price,
+        Discount_application_limit_violation,
+        Invalid_discount_range,
+        Description_length_violation,
+        No_search_criteria,
+        Conflict_params,
+        No_update_criteria,
+        Conflict_update_params,
+        Empty_id,
+        Filename_format_violation,
+        Product_Not_Found
     }
 }
