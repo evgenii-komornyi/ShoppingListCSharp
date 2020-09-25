@@ -6,11 +6,7 @@ using ShoppingList.Repository;
 using ShoppingList.Service;
 using ShoppingList.Validation.Cart;
 using ShoppingList.Validation.Product;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
 
 namespace ShoppingListAPI.App_Start

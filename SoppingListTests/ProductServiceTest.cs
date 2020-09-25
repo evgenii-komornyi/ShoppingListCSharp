@@ -1,9 +1,7 @@
 ﻿using Moq;
-using ShoppingList;
 using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request.Product;
 using ShoppingList.Repository;
-using ShoppingList.Service.Product;
+using ShoppingList.Service;
 using ShoppingList.Validation.Product;
 using System.Collections.Generic;
 using Xunit;

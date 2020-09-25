@@ -1,9 +1,6 @@
 ﻿using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request.Product;
 using ShoppingList.Validation.Errors;
 using ShoppingList.Validation.Product;
-using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace ShoppingListTests
