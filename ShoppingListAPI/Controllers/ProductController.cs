@@ -1,6 +1,7 @@
 ﻿using DataTransferObjects.ProductDTO;
 using ShoppingList.DataModel;
-using ShoppingList.Service;
+using ShoppingList.DataModel.Request.ProductNS;
+using ShoppingList.Service.ProductNS;
 using ShoppingList.Validation.Errors;
 using System.Collections.Generic;
 using System.Web.Http;

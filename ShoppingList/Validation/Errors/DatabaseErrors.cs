@@ -1,4 +1,4 @@
-﻿namespace ShoppingList.Validation
+﻿namespace ShoppingList.Validation.Errors
 {
     public enum DatabaseErrors
     {

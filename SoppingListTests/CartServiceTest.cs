@@ -1,9 +1,12 @@
 ﻿using Moq;
-using ShoppingList;
 using ShoppingList.DataModel;
-using ShoppingList.Repository;
-using ShoppingList.Service;
-using ShoppingList.Validation.Cart;
+using ShoppingList.DataModel.Request.CartNS;
+using ShoppingList.DataModel.Request.ProductNS;
+using ShoppingList.DataModel.Response.ProductNS;
+using ShoppingList.Repository.CartNS;
+using ShoppingList.Service.CartNS;
+using ShoppingList.Service.ProductNS;
+using ShoppingList.Validation.CartNS;
 using Xunit;
 using Assert = Xunit.Assert;
 

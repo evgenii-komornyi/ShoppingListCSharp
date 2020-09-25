@@ -1,11 +1,20 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
-using ShoppingList;
 using ShoppingList.DataModel;
-using ShoppingList.Repository;
-using ShoppingList.Service;
-using ShoppingList.Validation.Cart;
-using ShoppingList.Validation.Product;
+using ShoppingList.Repository.AddressNS;
+using ShoppingList.Repository.CartNS;
+using ShoppingList.Repository.CategoryNS;
+using ShoppingList.Repository.FileStorageNS;
+using ShoppingList.Repository.ProductNS;
+using ShoppingList.Repository.UserNS;
+using ShoppingList.Service.AddressNS;
+using ShoppingList.Service.CartNS;
+using ShoppingList.Service.CategoryNS;
+using ShoppingList.Service.FileStorageNS;
+using ShoppingList.Service.ProductNS;
+using ShoppingList.Service.UserNS;
+using ShoppingList.Validation.CartNS;
+using ShoppingList.Validation.ProductNS;
 using System.Reflection;
 using System.Web.Http;
 
@@ -51,8 +60,8 @@ namespace ShoppingListAPI.App_Start
             builder.RegisterType<FileStorageRepository>().As<IFileStorage>();
             builder.RegisterType<FileStorageService>().As<IFileStorageService>();
 
-            builder.RegisterType<ProductService>().As<IProductService>();
             builder.RegisterType<ProductRepository>().As<IProduct>();
+            builder.RegisterType<ProductService>().As<IProductService>();
 
             builder.RegisterType<ProductValidation>().AsSelf();
             builder.RegisterType<CreateRequestValidation>().AsSelf();

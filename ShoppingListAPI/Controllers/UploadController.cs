@@ -1,6 +1,6 @@
 ﻿using DataTransferObjects.FileStorageDTO;
-using ShoppingList;
 using ShoppingList.DataModel;
+using ShoppingList.Service.FileStorageNS;
 using System;
 using System.Collections.Generic;
 using System.IO;

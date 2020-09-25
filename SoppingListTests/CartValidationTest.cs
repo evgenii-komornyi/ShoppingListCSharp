@@ -1,6 +1,5 @@
-﻿using ShoppingList;
-using ShoppingList.DataModel;
-using ShoppingList.Validation.Cart;
+﻿using ShoppingList.DataModel.Request.CartNS;
+using ShoppingList.Validation.CartNS;
 using ShoppingList.Validation.Errors;
 using Xunit;
 

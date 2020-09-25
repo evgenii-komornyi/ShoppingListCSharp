@@ -1,6 +1,6 @@
 ﻿using DataTransferObjects.CategoryDTO;
-using ShoppingList;
 using ShoppingList.DataModel;
+using ShoppingList.Service.CategoryNS;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
