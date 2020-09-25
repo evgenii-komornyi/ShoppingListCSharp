@@ -2,7 +2,7 @@
 using ShoppingList.Validation.Errors;
 using System.Collections.Generic;
 
-namespace ShoppingList.DataModel.Response.Cart
+namespace ShoppingList.DataModel
 {
     public abstract class CartBasicResponse : BasicResponse
     {

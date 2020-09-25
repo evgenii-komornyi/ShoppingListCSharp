@@ -1,10 +1,6 @@
-﻿using ShoppingList.DataModel.Request.Product;
+﻿using ShoppingList.DataModel;
 using ShoppingList.Validation.Errors;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShoppingList.Validation.Product
 {

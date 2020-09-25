@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShoppingList.Validation.Product
+﻿namespace ShoppingList.Validation.Product
 {
     public class ProductValidation
     {

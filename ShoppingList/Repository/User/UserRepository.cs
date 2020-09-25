@@ -1,12 +1,7 @@
 ﻿using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request.User;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShoppingList.Repository
 {

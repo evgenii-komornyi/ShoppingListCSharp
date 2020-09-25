@@ -1,11 +1,7 @@
 ﻿using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request.Product;
 using ShoppingList.Validation.Errors;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShoppingList.Validation.Product
 {
@@ -25,7 +21,7 @@ namespace ShoppingList.Validation.Product
             }
 
             allErrors.AddRange(ValidateDiscountPossibility(createFieldRequest.Price, createFieldRequest.Discount));
-  /*          allErrors.AddRange(ValidateFileNameField(createFieldRequest.File_Id));*/
+            allErrors.AddRange(ValidateFileNameField(createFieldRequest.File_Id));
 
             return allErrors;
         }
@@ -126,15 +122,15 @@ namespace ShoppingList.Validation.Product
             return errorsList;
         }
 
-/*        private List<ProductValidationErrors> ValidateFileNameField(long file_Id)
+        private List<ProductValidationErrors> ValidateFileNameField(long file_Id)
         {
             List<ProductValidationErrors> errorsList = new List<ProductValidationErrors>();
 
-            if (!fileName.EndsWith(".png")) 
+            if (!fileName.EndsWith(".png"))
             {
                 errorsList.Add(ProductValidationErrors.Filename_format_violation);
             }
             return errorsList;
         }
-*/    }
+    }
 }

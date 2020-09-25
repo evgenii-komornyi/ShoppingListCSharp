@@ -1,14 +1,9 @@
 ﻿using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request.Cart;
-using ShoppingList.DataModel.Request.Product;
-using ShoppingList.DataModel.Response.Cart;
 using ShoppingList.Exceptions;
 using ShoppingList.Repository;
 using ShoppingList.Service;
-using ShoppingList.Service.Product;
 using ShoppingList.Validation;
 using ShoppingList.Validation.Cart;
-using ShoppingList.Validation.Errors;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

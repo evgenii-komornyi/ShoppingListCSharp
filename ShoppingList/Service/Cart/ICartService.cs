@@ -1,8 +1,4 @@
 ﻿using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request;
-using ShoppingList.DataModel.Request.Cart;
-using ShoppingList.DataModel.Response;
-using ShoppingList.DataModel.Response.Cart;
 
 namespace ShoppingList.Service
 {

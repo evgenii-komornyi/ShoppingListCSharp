@@ -1,6 +1,5 @@
-﻿using ShoppingList.DataModel.Request.Cart;
+﻿using ShoppingList.DataModel;
 using ShoppingList.Validation.Errors;
-using System;
 using System.Collections.Generic;
 
 namespace ShoppingList.Validation.Cart
