@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShoppingList.DataModel
 {
@@ -35,5 +30,8 @@ namespace ShoppingList.DataModel
 
         [Column("Phone")]
         public string Phone { get; set; }
+
+        [Column("User_Id")]
+        public long User_Id { get; set; }
     }
 }

@@ -102,40 +102,44 @@
     <Compile Include="DataModel\FileStorage.cs" />
     <Compile Include="DataModel\Product.cs" />
     <Compile Include="DataModel\ProductCart.cs" />
+    <Compile Include="DataModel\Request\AddressNS\AddressBasicRequest.cs" />
+    <Compile Include="DataModel\Request\AddressNS\AddressCreateRequest.cs" />
     <Compile Include="DataModel\Request\BasicRequest.cs" />
-    <Compile Include="DataModel\Request\Cart\AddUpdateCartRequest.cs" />
-    <Compile Include="DataModel\Request\Cart\CartBasicRequest.cs" />
-    <Compile Include="DataModel\Request\Cart\CartClearRequest.cs" />
-    <Compile Include="DataModel\Request\Cart\CartCreateRequest.cs" />
-    <Compile Include="DataModel\Request\Cart\CartFindRequest.cs" />
-    <Compile Include="DataModel\Request\Cart\RemoveProductFromCartRequest.cs" />
-    <Compile Include="DataModel\Request\Product\ProductBasicRequest.cs" />
-    <Compile Include="DataModel\Request\Product\ProductCreateRequest.cs" />
-    <Compile Include="DataModel\Request\Product\ProductDeleteRequest.cs" />
-    <Compile Include="DataModel\Request\Product\ProductFindRequest.cs" />
-    <Compile Include="DataModel\Request\Product\ProductUpdateRequest.cs" />
-    <Compile Include="DataModel\Request\User\UserBasicRequest.cs" />
-    <Compile Include="DataModel\Request\User\UserCreateRequest.cs" />
-    <Compile Include="DataModel\Request\User\UserFindRequest.cs" />
-    <Compile Include="DataModel\Request\User\UserDeleteRequest.cs" />
-    <Compile Include="DataModel\Request\User\UserUpdateRequest.cs" />
+    <Compile Include="DataModel\Request\CartNS\AddUpdateCartRequest.cs" />
+    <Compile Include="DataModel\Request\CartNS\CartBasicRequest.cs" />
+    <Compile Include="DataModel\Request\CartNS\CartClearRequest.cs" />
+    <Compile Include="DataModel\Request\CartNS\CartCreateRequest.cs" />
+    <Compile Include="DataModel\Request\CartNS\CartFindRequest.cs" />
+    <Compile Include="DataModel\Request\CartNS\RemoveProductFromCartRequest.cs" />
+    <Compile Include="DataModel\Request\ProductNS\ProductBasicRequest.cs" />
+    <Compile Include="DataModel\Request\ProductNS\ProductCreateRequest.cs" />
+    <Compile Include="DataModel\Request\ProductNS\ProductDeleteRequest.cs" />
+    <Compile Include="DataModel\Request\ProductNS\ProductFindRequest.cs" />
+    <Compile Include="DataModel\Request\ProductNS\ProductUpdateRequest.cs" />
+    <Compile Include="DataModel\Request\UserNS\UserBasicRequest.cs" />
+    <Compile Include="DataModel\Request\UserNS\UserCreateRequest.cs" />
+    <Compile Include="DataModel\Request\UserNS\UserFindRequest.cs" />
+    <Compile Include="DataModel\Request\UserNS\UserDeleteRequest.cs" />
+    <Compile Include="DataModel\Request\UserNS\UserUpdateRequest.cs" />
+    <Compile Include="DataModel\Response\AddressNS\AddressBasicResponse.cs" />
+    <Compile Include="DataModel\Response\AddressNS\AddressCreateResponse.cs" />
     <Compile Include="DataModel\Response\BasicResponse.cs" />
-    <Compile Include="DataModel\Response\Cart\AddUpdateCartResponse.cs" />
-    <Compile Include="DataModel\Response\Cart\CartBasicResponse.cs" />
-    <Compile Include="DataModel\Response\Cart\CartClearResponse.cs" />
-    <Compile Include="DataModel\Response\Cart\CartCreateResponse.cs" />
-    <Compile Include="DataModel\Response\Cart\CartFindResponse.cs" />
-    <Compile Include="DataModel\Response\Cart\RemoveProductFromCartResponse.cs" />
-    <Compile Include="DataModel\Response\Product\ProductBasicResponse.cs" />
-    <Compile Include="DataModel\Response\Product\ProductCreateResponse.cs" />
-    <Compile Include="DataModel\Response\Product\ProductDeleteResponse.cs" />
-    <Compile Include="DataModel\Response\Product\ProductFindResponse.cs" />
-    <Compile Include="DataModel\Response\Product\ProductUpdateResponse.cs" />
-    <Compile Include="DataModel\Response\User\UserBasicResponse.cs" />
-    <Compile Include="DataModel\Response\User\UserCreateResponse.cs" />
-    <Compile Include="DataModel\Response\User\UserDeleteResponse.cs" />
-    <Compile Include="DataModel\Response\User\UserFindResponse.cs" />
-    <Compile Include="DataModel\Response\User\UserUpdateResponse.cs" />
+    <Compile Include="DataModel\Response\CartNS\AddUpdateCartResponse.cs" />
+    <Compile Include="DataModel\Response\CartNS\CartBasicResponse.cs" />
+    <Compile Include="DataModel\Response\CartNS\CartClearResponse.cs" />
+    <Compile Include="DataModel\Response\CartNS\CartCreateResponse.cs" />
+    <Compile Include="DataModel\Response\CartNS\CartFindResponse.cs" />
+    <Compile Include="DataModel\Response\CartNS\RemoveProductFromCartResponse.cs" />
+    <Compile Include="DataModel\Response\ProductNS\ProductBasicResponse.cs" />
+    <Compile Include="DataModel\Response\ProductNS\ProductCreateResponse.cs" />
+    <Compile Include="DataModel\Response\ProductNS\ProductDeleteResponse.cs" />
+    <Compile Include="DataModel\Response\ProductNS\ProductFindResponse.cs" />
+    <Compile Include="DataModel\Response\ProductNS\ProductUpdateResponse.cs" />
+    <Compile Include="DataModel\Response\UserNS\UserBasicResponse.cs" />
+    <Compile Include="DataModel\Response\UserNS\UserCreateResponse.cs" />
+    <Compile Include="DataModel\Response\UserNS\UserDeleteResponse.cs" />
+    <Compile Include="DataModel\Response\UserNS\UserFindResponse.cs" />
+    <Compile Include="DataModel\Response\UserNS\UserUpdateResponse.cs" />
     <Compile Include="DataModel\ShoppingListContext.cs" />
     <Compile Include="DataModel\User.cs" />
     <Compile Include="Exceptions\UniqueKeyViolationException.cs" />
@@ -160,54 +164,80 @@
     <Compile Include="Migrations\202009221651374_cascadeDeleteTrue.Designer.cs">
       <DependentUpon>202009221651374_cascadeDeleteTrue.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202009231435170_AddUser_Addresses_Tables.cs" />
-    <Compile Include="Migrations\202009231435170_AddUser_Addresses_Tables.Designer.cs">
-      <DependentUpon>202009231435170_AddUser_Addresses_Tables.cs</DependentUpon>
+    <Compile Include="Migrations\202009241248340_AddAddressID_In_User.cs" />
+    <Compile Include="Migrations\202009241248340_AddAddressID_In_User.Designer.cs">
+      <DependentUpon>202009241248340_AddAddressID_In_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009290739499_deletedMaxLenghtSaltAndHash.cs" />
+    <Compile Include="Migrations\202009290739499_deletedMaxLenghtSaltAndHash.Designer.cs">
+      <DependentUpon>202009290739499_deletedMaxLenghtSaltAndHash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009291934359_nullableAddressIdTrue.cs" />
+    <Compile Include="Migrations\202009291934359_nullableAddressIdTrue.Designer.cs">
+      <DependentUpon>202009291934359_nullableAddressIdTrue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010051019512_wasAddedEmailToUser.cs" />
+    <Compile Include="Migrations\202010051019512_wasAddedEmailToUser.Designer.cs">
+      <DependentUpon>202010051019512_wasAddedEmailToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010090927286_wasChangedLengthNameBirthday.cs" />
+    <Compile Include="Migrations\202010090927286_wasChangedLengthNameBirthday.Designer.cs">
+      <DependentUpon>202010090927286_wasChangedLengthNameBirthday.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\CartRepository.cs" />
-    <Compile Include="Repository\CategoryRepository.cs" />
-    <Compile Include="Repository\FileStorageRepository.cs" />
-    <Compile Include="Repository\ICart.cs" />
-    <Compile Include="Repository\ICategory.cs" />
-    <Compile Include="Repository\IFileStorage.cs" />
-    <Compile Include="Repository\IProduct.cs" />
-    <Compile Include="Repository\IUser.cs" />
-    <Compile Include="Repository\ProductRepository.cs" />
-    <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="Service\Cart\CartService.cs" />
-    <Compile Include="Service\Cart\ICartService.cs" />
-    <Compile Include="Service\Category\CategoryService.cs" />
-    <Compile Include="Service\Category\ICategoryService.cs" />
-    <Compile Include="Service\FileStorage\FileStorageService.cs" />
-    <Compile Include="Service\FileStorage\IFileStorageService.cs" />
-    <Compile Include="Service\Product\IProductService.cs" />
-    <Compile Include="Service\Product\ProductService.cs" />
-    <Compile Include="Validation\Cart\AddProductToCartValidation.cs" />
-    <Compile Include="Validation\Cart\CartClearRequestValidation.cs" />
-    <Compile Include="Validation\Cart\CartFindRequestValidation.cs" />
-    <Compile Include="Validation\Cart\CartRemoveRequestValidation.cs" />
-    <Compile Include="Validation\Cart\CartValidation.cs" />
-    <Compile Include="Validation\Cart\CartCreateRequestValidation.cs" />
-    <Compile Include="Validation\Cart\RemoveFromCartRequestValidation.cs" />
+    <Compile Include="Repository\AddressNS\AddressRepository.cs" />
+    <Compile Include="Repository\CartNS\CartRepository.cs" />
+    <Compile Include="Repository\CategoryNS\CategoryRepository.cs" />
+    <Compile Include="Repository\FileStorageNS\FileStorageRepository.cs" />
+    <Compile Include="Repository\AddressNS\IAddress.cs" />
+    <Compile Include="Repository\CartNS\ICart.cs" />
+    <Compile Include="Repository\CategoryNS\ICategory.cs" />
+    <Compile Include="Repository\FileStorageNS\IFileStorage.cs" />
+    <Compile Include="Repository\ProductNS\IProduct.cs" />
+    <Compile Include="Repository\UserNS\IUser.cs" />
+    <Compile Include="Repository\ProductNS\ProductRepository.cs" />
+    <Compile Include="Repository\UserNS\UserRepository.cs" />
+    <Compile Include="Service\AddressNS\AddressService.cs" />
+    <Compile Include="Service\AddressNS\IAddressService.cs" />
+    <Compile Include="Service\CartNS\CartService.cs" />
+    <Compile Include="Service\CartNS\ICartService.cs" />
+    <Compile Include="Service\CategoryNS\CategoryService.cs" />
+    <Compile Include="Service\CategoryNS\ICategoryService.cs" />
+    <Compile Include="Service\FileStorageNS\FileStorageService.cs" />
+    <Compile Include="Service\FileStorageNS\IFileStorageService.cs" />
+    <Compile Include="Service\ProductNS\IProductService.cs" />
+    <Compile Include="Service\ProductNS\ProductService.cs" />
+    <Compile Include="Service\UserNS\IUserService.cs" />
+    <Compile Include="Service\UserNS\UserService.cs" />
+    <Compile Include="Validation\AddressNS\AddressCreateRequestValidation.cs" />
+    <Compile Include="Validation\AddressNS\AddressValidation.cs" />
+    <Compile Include="Validation\CartNS\AddProductToCartValidation.cs" />
+    <Compile Include="Validation\CartNS\CartClearRequestValidation.cs" />
+    <Compile Include="Validation\CartNS\CartFindRequestValidation.cs" />
+    <Compile Include="Validation\CartNS\CartRemoveRequestValidation.cs" />
+    <Compile Include="Validation\CartNS\CartValidation.cs" />
+    <Compile Include="Validation\CartNS\CartCreateRequestValidation.cs" />
+    <Compile Include="Validation\CartNS\RemoveFromCartRequestValidation.cs" />
+    <Compile Include="Validation\Errors\AddressValidationErrors.cs" />
     <Compile Include="Validation\Errors\CartValidationErrors.cs" />
     <Compile Include="Validation\Errors\DatabaseErrors.cs" />
     <Compile Include="Validation\Errors\ProductValidationErrors.cs" />
-    <Compile Include="Validation\Product\CreateRequestValidation.cs" />
-    <Compile Include="Validation\Product\DeleteRequestValidation.cs" />
-    <Compile Include="Validation\Product\FindRequestValidation.cs" />
-    <Compile Include="Validation\Product\ProductValidation.cs" />
-    <Compile Include="Validation\Product\UpdateRequestValidation.cs" />
+    <Compile Include="Validation\Errors\UserValidationErrors.cs" />
+    <Compile Include="Validation\ProductNS\CreateRequestValidation.cs" />
+    <Compile Include="Validation\ProductNS\DeleteRequestValidation.cs" />
+    <Compile Include="Validation\ProductNS\FindRequestValidation.cs" />
+    <Compile Include="Validation\ProductNS\ProductValidation.cs" />
+    <Compile Include="Validation\ProductNS\UpdateRequestValidation.cs" />
+    <Compile Include="Validation\UserNS\UserCreateRequestValidation.cs" />
+    <Compile Include="Validation\UserNS\UserValidation.cs" />
     <Compile Include="Validation\Validatable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\User\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202009181042485_newLastMigration.resx">
       <DependentUpon>202009181042485_newLastMigration.cs</DependentUpon>
@@ -224,8 +254,20 @@
     <EmbeddedResource Include="Migrations\202009221651374_cascadeDeleteTrue.resx">
       <DependentUpon>202009221651374_cascadeDeleteTrue.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009231435170_AddUser_Addresses_Tables.resx">
-      <DependentUpon>202009231435170_AddUser_Addresses_Tables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202009241248340_AddAddressID_In_User.resx">
+      <DependentUpon>202009241248340_AddAddressID_In_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009290739499_deletedMaxLenghtSaltAndHash.resx">
+      <DependentUpon>202009290739499_deletedMaxLenghtSaltAndHash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009291934359_nullableAddressIdTrue.resx">
+      <DependentUpon>202009291934359_nullableAddressIdTrue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010051019512_wasAddedEmailToUser.resx">
+      <DependentUpon>202010051019512_wasAddedEmailToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010090927286_wasChangedLengthNameBirthday.resx">
+      <DependentUpon>202010090927286_wasChangedLengthNameBirthday.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

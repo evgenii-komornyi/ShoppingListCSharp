@@ -1,10 +1,9 @@
 ﻿using Moq;
-using ShoppingList;
 using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request.Product;
-using ShoppingList.Repository;
-using ShoppingList.Service.Product;
-using ShoppingList.Validation.Product;
+using ShoppingList.DataModel.Request.ProductNS;
+using ShoppingList.Repository.ProductNS;
+using ShoppingList.Service.ProductNS;
+using ShoppingList.Validation.ProductNS;
 using System.Collections.Generic;
 using Xunit;
 using Assert = Xunit.Assert;
@@ -189,7 +188,7 @@ namespace ShoppingListTests
             Assert.Equal(expectedName, actual.Name);
             Assert.Equal(expectedPrice, actual.Price);
             Assert.Equal(expectedDiscount, actual.Discount);
-            Assert.Equal("default.png", actual.FileName);
+            Assert.Equal(2, actual.File_Id);
         }
 
         [Fact]

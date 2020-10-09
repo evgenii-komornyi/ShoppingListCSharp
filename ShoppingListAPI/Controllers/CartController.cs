@@ -1,13 +1,9 @@
 ﻿using DataTransferObjects.CartDTO;
 using DataTransferObjects.ProductDTO;
 using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request.Cart;
-using ShoppingList.Service;
-using System;
+using ShoppingList.DataModel.Request.CartNS;
+using ShoppingList.Service.CartNS;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 

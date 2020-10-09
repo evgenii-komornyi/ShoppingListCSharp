@@ -1,10 +1,5 @@
-﻿using ShoppingList.Validation;
-using ShoppingList.Validation.Errors;
-using System;
+﻿using ShoppingList.Validation.Errors;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataTransferObjects.ProductDTO
 {

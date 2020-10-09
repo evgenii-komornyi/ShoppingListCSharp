@@ -1,9 +1,6 @@
 namespace ShoppingList.DataModel
 {
-    using System;
     using System.Data.Entity;
-    using System.Linq;
-    using System.Security.Cryptography.X509Certificates;
 
     public class ShoppingListContext : DbContext
     {

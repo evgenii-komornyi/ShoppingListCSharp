@@ -1,12 +1,6 @@
-﻿using ShoppingList;
-using ShoppingList.DataModel.Request.Cart;
-using ShoppingList.Validation.Cart;
+﻿using ShoppingList.DataModel.Request.CartNS;
+using ShoppingList.Validation.CartNS;
 using ShoppingList.Validation.Errors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace ShoppingListTests

@@ -1,16 +1,9 @@
-﻿using DataTransferObjects.CategoryDTO;
-using DataTransferObjects.ProductDTO;
-using ShoppingList;
+﻿using DataTransferObjects.ProductDTO;
 using ShoppingList.DataModel;
-using ShoppingList.DataModel.Request.Product;
-using ShoppingList.Service.Product;
+using ShoppingList.DataModel.Request.ProductNS;
+using ShoppingList.Service.ProductNS;
 using ShoppingList.Validation.Errors;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 

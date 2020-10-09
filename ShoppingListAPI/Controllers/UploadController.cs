@@ -1,20 +1,11 @@
-﻿using DataTransferObjects;
-using DataTransferObjects.FileStorageDTO;
-using ShoppingList;
+﻿using DataTransferObjects.FileStorageDTO;
 using ShoppingList.DataModel;
-using ShoppingList.Repository;
-using ShoppingList.Service;
+using ShoppingList.Service.FileStorageNS;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
-using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Cors;
 

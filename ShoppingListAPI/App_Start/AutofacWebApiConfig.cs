@@ -1,17 +1,23 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
-using ShoppingList;
 using ShoppingList.DataModel;
-using ShoppingList.Repository;
-using ShoppingList.Service;
-using ShoppingList.Service.Product;
-using ShoppingList.Validation.Cart;
-using ShoppingList.Validation.Product;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using ShoppingList.Repository.AddressNS;
+using ShoppingList.Repository.CartNS;
+using ShoppingList.Repository.CategoryNS;
+using ShoppingList.Repository.FileStorageNS;
+using ShoppingList.Repository.ProductNS;
+using ShoppingList.Repository.UserNS;
+using ShoppingList.Service.AddressNS;
+using ShoppingList.Service.CartNS;
+using ShoppingList.Service.CategoryNS;
+using ShoppingList.Service.FileStorageNS;
+using ShoppingList.Service.ProductNS;
+using ShoppingList.Service.UserNS;
+using ShoppingList.Validation.AddressNS;
+using ShoppingList.Validation.CartNS;
+using ShoppingList.Validation.ProductNS;
+using ShoppingList.Validation.UserNS;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
 
 namespace ShoppingListAPI.App_Start
@@ -36,23 +42,14 @@ namespace ShoppingListAPI.App_Start
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterType<ProductService>().As<IProductService>();
-            builder.RegisterType<ProductRepository>().As<IProduct>();
+            builder.RegisterType<AddressRepository>().As<IAddress>();
+            builder.RegisterType<AddressService>().As<IAddressService>();
 
-            builder.RegisterType<ProductValidation>().AsSelf();
-            builder.RegisterType<CreateRequestValidation>().AsSelf();
-            builder.RegisterType<FindRequestValidation>().AsSelf();
-            builder.RegisterType<UpdateRequestValidation>().AsSelf();
-            builder.RegisterType<DeleteRequestValidation>().AsSelf();
+            builder.RegisterType<AddressValidation>().AsSelf();
+            builder.RegisterType<AddressCreateRequestValidation>().AsSelf();
 
             builder.RegisterType<CartRepository>().As<ICart>();
             builder.RegisterType<CartService>().As<ICartService>();
-
-            builder.RegisterType<CategoryRepository>().As<ICategory>();
-            builder.RegisterType<CategoryService>().As<ICategoryService>();
-
-            builder.RegisterType<FileStorageRepository>().As<IFileStorage>();
-            builder.RegisterType<FileStorageService>().As<IFileStorageService>();
 
             builder.RegisterType<CartValidation>().AsSelf();
             builder.RegisterType<CartCreateRequestValidation>().AsSelf();
@@ -61,6 +58,27 @@ namespace ShoppingListAPI.App_Start
             builder.RegisterType<CartRemoveRequestValidation>().AsSelf();
             builder.RegisterType<RemoveFromCartRequestValidation>().AsSelf();
             builder.RegisterType<CartClearRequestValidation>().AsSelf();
+
+            builder.RegisterType<CategoryRepository>().As<ICategory>();
+            builder.RegisterType<CategoryService>().As<ICategoryService>();
+
+            builder.RegisterType<FileStorageRepository>().As<IFileStorage>();
+            builder.RegisterType<FileStorageService>().As<IFileStorageService>();
+
+            builder.RegisterType<ProductRepository>().As<IProduct>();
+            builder.RegisterType<ProductService>().As<IProductService>();
+
+            builder.RegisterType<ProductValidation>().AsSelf();
+            builder.RegisterType<CreateRequestValidation>().AsSelf();
+            builder.RegisterType<FindRequestValidation>().AsSelf();
+            builder.RegisterType<UpdateRequestValidation>().AsSelf();
+            builder.RegisterType<DeleteRequestValidation>().AsSelf();
+
+            builder.RegisterType<UserRepository>().As<IUser>();
+            builder.RegisterType<UserService>().As<IUserService>();
+
+            builder.RegisterType<UserValidation>().AsSelf();
+            builder.RegisterType<UserCreateRequestValidation>().AsSelf();
 
             builder.RegisterType<ShoppingListContext>().AsSelf();
 
