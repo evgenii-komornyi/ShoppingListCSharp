@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressDTO\AddressBasicDTO.cs" />
+    <Compile Include="AddressDTO\AddressCreateDTO.cs" />
     <Compile Include="CartDTO\AddUpdateCartDTO.cs" />
     <Compile Include="CartDTO\CartBasicDTO.cs" />
     <Compile Include="CartDTO\CartDTO.cs" />
@@ -62,6 +64,8 @@
     <Compile Include="ProductDTO\UpdateProductDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UploadDTO.cs" />
+    <Compile Include="UserDTO\UserBasicDTO.cs" />
+    <Compile Include="UserDTO\UserCreateDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -72,5 +76,6 @@
       <Name>ShoppingList</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

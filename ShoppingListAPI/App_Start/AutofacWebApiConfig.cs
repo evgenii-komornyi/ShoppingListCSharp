@@ -13,8 +13,10 @@ using ShoppingList.Service.CategoryNS;
 using ShoppingList.Service.FileStorageNS;
 using ShoppingList.Service.ProductNS;
 using ShoppingList.Service.UserNS;
+using ShoppingList.Validation.AddressNS;
 using ShoppingList.Validation.CartNS;
 using ShoppingList.Validation.ProductNS;
+using ShoppingList.Validation.UserNS;
 using System.Reflection;
 using System.Web.Http;
 
@@ -42,6 +44,9 @@ namespace ShoppingListAPI.App_Start
 
             builder.RegisterType<AddressRepository>().As<IAddress>();
             builder.RegisterType<AddressService>().As<IAddressService>();
+
+            builder.RegisterType<AddressValidation>().AsSelf();
+            builder.RegisterType<AddressCreateRequestValidation>().AsSelf();
 
             builder.RegisterType<CartRepository>().As<ICart>();
             builder.RegisterType<CartService>().As<ICartService>();
@@ -71,6 +76,9 @@ namespace ShoppingListAPI.App_Start
 
             builder.RegisterType<UserRepository>().As<IUser>();
             builder.RegisterType<UserService>().As<IUserService>();
+
+            builder.RegisterType<UserValidation>().AsSelf();
+            builder.RegisterType<UserCreateRequestValidation>().AsSelf();
 
             builder.RegisterType<ShoppingListContext>().AsSelf();
 

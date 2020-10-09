@@ -168,6 +168,22 @@
     <Compile Include="Migrations\202009241248340_AddAddressID_In_User.Designer.cs">
       <DependentUpon>202009241248340_AddAddressID_In_User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009290739499_deletedMaxLenghtSaltAndHash.cs" />
+    <Compile Include="Migrations\202009290739499_deletedMaxLenghtSaltAndHash.Designer.cs">
+      <DependentUpon>202009290739499_deletedMaxLenghtSaltAndHash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009291934359_nullableAddressIdTrue.cs" />
+    <Compile Include="Migrations\202009291934359_nullableAddressIdTrue.Designer.cs">
+      <DependentUpon>202009291934359_nullableAddressIdTrue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010051019512_wasAddedEmailToUser.cs" />
+    <Compile Include="Migrations\202010051019512_wasAddedEmailToUser.Designer.cs">
+      <DependentUpon>202010051019512_wasAddedEmailToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010090927286_wasChangedLengthNameBirthday.cs" />
+    <Compile Include="Migrations\202010090927286_wasChangedLengthNameBirthday.Designer.cs">
+      <DependentUpon>202010090927286_wasChangedLengthNameBirthday.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AddressNS\AddressRepository.cs" />
@@ -194,6 +210,8 @@
     <Compile Include="Service\ProductNS\ProductService.cs" />
     <Compile Include="Service\UserNS\IUserService.cs" />
     <Compile Include="Service\UserNS\UserService.cs" />
+    <Compile Include="Validation\AddressNS\AddressCreateRequestValidation.cs" />
+    <Compile Include="Validation\AddressNS\AddressValidation.cs" />
     <Compile Include="Validation\CartNS\AddProductToCartValidation.cs" />
     <Compile Include="Validation\CartNS\CartClearRequestValidation.cs" />
     <Compile Include="Validation\CartNS\CartFindRequestValidation.cs" />
@@ -201,6 +219,7 @@
     <Compile Include="Validation\CartNS\CartValidation.cs" />
     <Compile Include="Validation\CartNS\CartCreateRequestValidation.cs" />
     <Compile Include="Validation\CartNS\RemoveFromCartRequestValidation.cs" />
+    <Compile Include="Validation\Errors\AddressValidationErrors.cs" />
     <Compile Include="Validation\Errors\CartValidationErrors.cs" />
     <Compile Include="Validation\Errors\DatabaseErrors.cs" />
     <Compile Include="Validation\Errors\ProductValidationErrors.cs" />
@@ -210,6 +229,8 @@
     <Compile Include="Validation\ProductNS\FindRequestValidation.cs" />
     <Compile Include="Validation\ProductNS\ProductValidation.cs" />
     <Compile Include="Validation\ProductNS\UpdateRequestValidation.cs" />
+    <Compile Include="Validation\UserNS\UserCreateRequestValidation.cs" />
+    <Compile Include="Validation\UserNS\UserValidation.cs" />
     <Compile Include="Validation\Validatable.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +256,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009241248340_AddAddressID_In_User.resx">
       <DependentUpon>202009241248340_AddAddressID_In_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009290739499_deletedMaxLenghtSaltAndHash.resx">
+      <DependentUpon>202009290739499_deletedMaxLenghtSaltAndHash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009291934359_nullableAddressIdTrue.resx">
+      <DependentUpon>202009291934359_nullableAddressIdTrue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010051019512_wasAddedEmailToUser.resx">
+      <DependentUpon>202010051019512_wasAddedEmailToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010090927286_wasChangedLengthNameBirthday.resx">
+      <DependentUpon>202010090927286_wasChangedLengthNameBirthday.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

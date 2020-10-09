@@ -13,7 +13,7 @@ namespace ShoppingList.DataModel
         public long Id { get; set; }
 
         [Required]
-        [MaxLength(10)]
+        [MaxLength(15)]
         [Column("FName")]
         public string FName { get; set; }
 
@@ -23,7 +23,7 @@ namespace ShoppingList.DataModel
         public string LName { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(40)]
         [Column("Birthday")]
         public string Birthday { get; set; }
 
@@ -33,11 +33,14 @@ namespace ShoppingList.DataModel
         [Column("Login")]
         public string Login { get; set; }
 
+        [Required]
         [MaxLength(100)]
+        [Column("Email")]
+        public string Email { get; set; }
+
         [Column("Hash")]
         public string Hash { get; set; }
 
-        [MaxLength(100)]
         [Column("Salt")]
         public string Salt { get; set; }
 
@@ -48,7 +51,7 @@ namespace ShoppingList.DataModel
         public string Role { get; set; }
 
         [Column("Address_Address_Id")]
-        public long Address_Id { get; set; }
+        public long? Address_Id { get; set; }
 
         [ForeignKey("Address_Id")]
         public Address Address { get; set; }
